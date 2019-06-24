@@ -1,0 +1,3024 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>API笔记总</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // 生成目录列表
+    var div1 = document.createElement("div");
+    div1.style.cssText = "clear:both";
+    var outline = document.createElement("div");
+    outline.setAttribute("id", "outline-list");
+    outline.style.cssText = "border:solid 1px #ccc; background:#eee; min-width:200px;padding:4px 10px;";
+
+    var ele_p = document.createElement("p");
+    ele_p.style.cssText = "text-align: left; margin: 0;";
+    outline.appendChild(ele_p);
+
+    var ele_span = document.createElement("span");
+    // ele_span.style.cssText = "float: left;";
+    var ele_text=document.createTextNode("目录");
+    ele_span.appendChild(ele_text);
+
+    var ele_a = document.createElement("a");
+    ele_a.appendChild(document.createTextNode("[+]"));
+    ele_a.setAttribute("href", "#");
+    ele_a.setAttribute("onclick", "javascript:return openct(this);");
+    ele_a.setAttribute("title", "点击打开目录");
+
+    ele_span.appendChild(ele_a);
+    ele_p.appendChild(ele_span);
+
+    var ele_ol = document.createElement("ol");
+    ele_ol.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    ele_ol.setAttribute("id", "outline_ol");
+    outline.appendChild(ele_ol);
+    var div1 = document.createElement("div");
+    div1.style.cssText = "clear:both";
+
+    document.body.insertBefore(outline, document.body.childNodes[0]);
+    // 获取所有标题
+    var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    if (headers.length < 2)
+      return;
+
+    // -----
+    var old_h = 0, ol_cnt = 0;
+    // -----
+
+    for (var i = 0; i < headers.length; i++) {
+
+      var ele_ols = null;
+      var ele_Current = ele_ol;
+      // 找出它是H几，为后面前置空格准备
+      var header = headers[i];
+      header.setAttribute("id", "t" + i + header.tagName);
+      var h = parseInt(header.tagName.substr(1), 10);
+
+      // -----
+      if (!old_h){
+        old_h = h;
+
+      }
+
+      if (h > old_h) {
+
+        ele_ols = document.createElement("ol");
+        ele_Current = ele_ol;
+        if(ele_Current && ol_cnt > 0){
+          var temp = ol_cnt;
+          while(temp > 0){
+            ele_Current = ele_Current.lastChild;
+            temp--;
+          }
+        }
+        ele_Current.lastChild.appendChild(ele_ols);
+        ol_cnt++;
+      } else if (h < old_h && ol_cnt > 0) {
+
+        if (h == 1) {
+          while (ol_cnt > 0) {
+            ol_cnt--;
+          }
+        } else {
+          ele_ols = document.createElement("ol");
+          ele_Current = ele_ol;
+          if(ele_Current && ol_cnt > 0){
+            var temp = ol_cnt;
+            while(temp > 1){
+              ele_Current = ele_Current.lastChild;
+              temp--;
+            }
+          }
+        // var ele_Parent = ele_Current.parentNode();
+        //ele_Current.appendChild(ele_ols);
+        ol_cnt--;
+
+        }
+      } else if (h == old_h && ol_cnt > 0) {
+
+        ele_Current = ele_ol;
+        if(ele_Current && ol_cnt > 0){
+          var temp = ol_cnt;
+          while(temp > 0){
+            ele_Current = ele_Current.lastChild;
+            temp--;
+          }
+        }
+        ele_Current = ele_Current.lastChild;
+      }
+      if (h == 1) {
+        while (ol_cnt > 0) {
+          ol_cnt--;
+        }
+      }
+      if (h < old_h && ol_cnt > 0 && h != 1){
+        ele_li = document.createElement("li")
+        ele_Current.lastChild.appendChild(ele_li);
+        old_h = h;
+        var a = document.createElement("a");
+        // 为目录项设置链接
+        a.setAttribute("href", "#t" + i + header.tagName);
+        // 目录项文本前面放置对应的空格
+        a.innerHTML = header.textContent;
+        ele_li.appendChild(a);
+        continue;
+      }
+
+      old_h = h;
+      // -----
+      if (ele_ols){
+        ele_li = document.createElement("li")
+        ele_ols.appendChild(ele_li); 
+      } else {
+        ele_li = document.createElement("li")
+        ele_Current.appendChild(ele_li);
+      }
+      var a = document.createElement("a");
+      // 为目录项设置链接
+      a.setAttribute("href", "#t" + i + header.tagName);
+      // 目录项文本前面放置对应的空格
+      a.innerHTML = header.textContent;
+      ele_li.appendChild(a);
+    }
+    // -----
+    while (ol_cnt > 0) {
+      ol_cnt--;
+    }
+    // -----
+    });
+function openct(e) {
+  if (e.innerHTML == '[+]') {
+    // createTextNode
+    e.setAttribute('title', '收起');
+    e.innerHTML = '[-]';
+    var element = document.getElementById("outline_ol");
+    element.style.cssText = "margin-left:14px;padding-left:14px;line-height:160%;";
+  } else {
+    e.setAttribute('title', '展开');
+    e.innerHTML = '[+]';
+    var element = document.getElementById("outline_ol");
+    element.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+  }
+  e.blur();
+  return false;
+}
+</script>
+</head>
+<body>
+<h1>API-day01</h1>
+<h2>1.注释：</h2>
+<pre><code>1)  //      单行注释
+2)  /* */   多行注释
+3)  /** */  文档注释
+    3.1)文档注释只写在类上,方法上和常量上
+    3.2)文档注释最终可以被javadoc命令解析并生成为一个文档手册.
+    @author adminitartor  :作者
+    @version 1.0          :项目版本 
+    @see java.lang.String :参考的类.包
+    @since JDK1.0         :jdk版本
+    --------------------------
+    @param name  指定的用户名
+    @return 带有问候语的字符串
+</code></pre>
+
+<h2>2.String 类</h2>
+<pre><code>1) String 类是final修饰的, 不可被继承
+2)字符串是不变对象,即:字符串对象创建后内容不可变改变内容会创建新对象
+3)字符串通常使用字面量形式创建,因为字面量形式创建的字符串对象会缓存在常量池中被重用,减少
+大量内容一样的字符串对象对内存的不必要开销
+4)编译器在编译源程序时若发现一个计算表达式的所有内容都是直接量,那么会直接计算该表
+达式并将结果编译到class文件中.
+</code></pre>
+
+<h3>2.1)int length() ------返回当前字符串的长度</h3>
+<pre><code>1)  字符串下标从0开始
+    int len = str.length();
+    System.out.println(&quot;len:&quot;+len);
+</code></pre>
+
+<h3>2.2)int indexOf(String str) --返回给定字符串在当前字符串中的位置,</h3>
+<pre><code>1)若当前字符串不含有给定字符串则返回-1
+2)index = str.indexOf(&quot;in&quot;, 3)   ------从指定位置开始查找
+3)index = str.lastIndexOf(&quot;in&quot;); ------查看最后一次出现的位置
+</code></pre>
+
+<h3>2.3)char charAt(int index)------返回当前字符串中指定位置的字符</h3>
+<pre><code>##案例:查看字符串是否为回文
+</code></pre>
+
+<h3>2.4).String substring(int start,int end)------截取当前字符串指定范围内的字符串并返回.</h3>
+<pre><code>1)在java api中通常使用两个数字表示范围时,都是&quot;含头不含尾&quot;的.
+2)String sub = str.substring(4);-------如果传一个参数则从指定位置截取到最后
+</code></pre>
+
+<h3>2.5)boolean startsWith(String str)------判断字符串是否是以给定字符串开始</h3>
+<pre><code>1)boolean endsWith(String str)------判断字符串是否是以给定字符串结尾的 
+</code></pre>
+
+<h3>2.6)String trim()------ 去除当前字符串两边的空白字符</h3>
+<h3>2.7)String toUpperCase()------ 将当前字符串中的英文部分转换为全大写</h3>
+<pre><code>1)String toLowerCase()------ 将当前字符串中的英文部分转换为全小写
+</code></pre>
+
+<h3>2.8)static String valueOf(...)------将java其他类型转换为字符串</h3>
+<pre><code>1)String提供了一组重载的静态方法valueOf,作用是将java其他类型转换为字符串
+ 常用于将基本类型转换为字符串
+2)调用时,使用类名点调用.
+3)有另两种方法: .toString;     和  +&quot;&quot;;
+</code></pre>
+
+<h2>3.java.lang.StringBuilder</h2>
+<p><img src="StringBuilder.png" /></p>
+<ul>
+<li>
+<p>StringBuilder:单线程, 效率高, 不安全</p>
+</li>
+<li>
+<p>StringBuffer:多线程, 效率低, 安全</p>
+</li>
+<li>
+<p>1)StringBuilder是为了解决频繁修改字符串对系统资源开销问题.</p>
+</li>
+<li>
+<p>2)StringBuilder内部是一个可变的字符数组,可以通过扩容来实现长度变换,而不是每次创建新对象.</p>
+</li>
+<li>
+<p>3)StringBuilder提供了方便修改字符串内容的方法.</p>
+</li>
+</ul>
+<h3>3.1)创建对象: StringBuffer builder= new StringBuffer(&quot;努力学习java&quot;);</h3>
+<h3>3.2)append(String str);------append()方法用于将给定内容拼接到当前字符串末尾.</h3>
+<h3>3.3)replace(9, 16, &quot;...&quot;);------replace()将当前字符串中指定范围内的内容替换为给定内容</h3>
+<h3>3.4)delete(0, 8);------delete():删除指定范围内的内容</h3>
+<h3>3.5)insert(0, &quot;活着&quot;);------insert():在当前字符串指定位置插入指定字符串内容</h3>
+<h3>3.6)reverse();------翻转字符串</h3>
+<h1>API-day02</h1>
+<h2>1.正则</h2>
+<ul>
+<li>1). 正则本身也是字符串</li>
+<li>2). 用于匹配字符串中字符次序的&quot;规则字符串&quot;</li>
+<li>
+<p>3). 很多编程语言,包括Java都支持了正则表达式</p>
+</li>
+<li>
+<p>正则表达式(Java String API 方法) 将一个字符串与正则表达式进行匹配,如果匹配成功就返回true,否则返回false</p>
+</li>
+</ul>
+<h3>1) boolean matches(String regex)--- 用于测试字符串整体是否符合正则规则：</h3>
+<ul>
+<li>括号内放入正则表达式</li>
+<li>符合返回true;</li>
+<li>不符合返回false;</li>
+</ul>
+<h3>2)字符集合</h3>
+<pre><code>    [abc] a b c 中任意 字符
+    [^abc] 除了a\b\c\的任意字符
+    [a-z]   a-z  中的任意字符
+    [a-zA-Z0-9] a-z A-Z 0-9中任意字符
+    [a-z&amp;&amp;[^bc]]a-z 中除了bc以外的任意一个字符  &amp;&amp;表示与的关系
+</code></pre>
+
+<h3>3)预定义字符集</h3>
+<pre><code>    .   --- 任意一个字符
+    \d  --- 任意一个数字字符,相当于[0-9]
+    \w  --- 相当于[a-z A-Z 0-9  _ ]
+    \s  --- 空白字符 相当于 [\t\n\x0B\f\r]
+    \D  --- 非数字字符
+    \W  --- 非单词字符
+    \S  --- 非空白字符
+</code></pre>
+
+<h3>4)数量词</h3>
+<pre><code>    X? 表示0个或任意1个X
+    X* 表示0个或任意多个X
+    X+  表示1个到任意多个X
+    X{n} 表示n个X
+    X{n,} 表示n个到任意多个X
+    X{n,m}  表示n个到m个X
+</code></pre>
+
+<h3>5)分组</h3>
+<pre><code>    ( | )
+    分组(序列1|序列2|序列3)    =====序列1 序列2 序列3 多选一
+</code></pre>
+
+<ul>
+<li>
+<p>案例:匹配一个图片文件</p>
+<pre><code>        \w+\.(jpg|png|gif|jpeg|bmp)
+</code></pre>
+
+</li>
+<li>
+<p>案例:匹配手机号</p>
+<pre><code>    15131997996
+    +8618605323252
+    +86 18603252251
+    00186 18603251521a
+    10086 15245213510
+    String reg =&quot;(\\+86|0086)?\\s?1\\d{10}\b&quot;;
+</code></pre>
+
+</li>
+</ul>
+<h3>6)边界匹配</h3>
+<pre><code>    ^--代表字符串开始 
+    &amp;--代表字符串结束
+</code></pre>
+
+<ul>
+<li>matchs 方法进行整体匹配检查,相当于包含^$边界检查, 造成如上正则检查 结果相同!这个不是正则表达式的问题  //是java matchs 方法的现象</li>
+</ul>
+<h3>7)String[] split(String regex)----切割字符串</h3>
+<ul>
+<li>
+<p>该方法可以将字符串按照特定的分隔符拆分成字符串数组将字符串按照匹配到的位置切开,切除匹配到的字符,将切开的结果保存到字符串数组</p>
+<pre><code>语句:String[] a= ***.split(String regex)   --regex 表示指定的分隔符(正则表达式)
+</code></pre>
+
+</li>
+</ul>
+<h3>8)String replaceAll();-------  将字符串中匹配正则表达式 regex 的字符串替换成replacement</h3>
+<pre><code>   语句:String replaceAll(String regex, String replacement) 
+        用法:
+            新字符串=源字符串.replace(正规,&quot;替换&quot;)
+            正则用于匹配替换目标,&quot;替换&quot;是替换所有的字符串
+</code></pre>
+
+<h3>9)转义:</h3>
+<pre><code>    正则匹配特殊字符时候，需要利用\进行转义
+     如:匹配字符[  采用： \[
+         特殊字符包括:[]  \ | () . * + ?等 
+</code></pre>
+
+<h2>2.Object类</h2>
+<ul>
+<li>
+<p>Java 中任何类型都继承于Object, 是Ojbect 的子类型(String 也继承了Object类)</p>
+</li>
+<li>
+<p>Object可以定义变量,引用任何类型(子类型)的对象 </p>
+</li>
+<li>
+<p>Object 中定义了全体类共同的方法,子类会自动的继承这些方法</p>
+</li>
+</ul>
+<h3>1)String</h3>
+<ul>
+<li>
+<p>1.1)toString() 方法就是在Object类上定义的方法, 是留给全部子类的方法!</p>
+<pre><code>    Java 提供的API几乎都重写了 toString()
+    包括: String StringBuilder Date Integer...
+</code></pre>
+
+</li>
+<li>
+<p>1.2)默认的toString方法返回值没有意义!</p>
+</li>
+<li>
+<pre><code> 返回的是 类名@散列值
+</code></pre>
+
+</li>
+<li>
+<p>1.3)建议在子类中重写toString方法.一般返回子类的重要数据</p>
+<pre><code>    //重写toString方法
+    public String toString(){
+    //返回Point对象的关键数据
+        return x+&quot;,&quot;+y;
+    }
+</code></pre>
+
+</li>
+<li>
+<p>1.4)调用重写的方法,会自动调用子类重写的方法</p>
+<pre><code>    //调用toString 方法
+    Point p = new Point(5,6);
+    String s = p.toString();    //输出的是字符串 已转换为字符串
+</code></pre>
+
+</li>
+<li>
+<p>1.5)toString方法的用途:Java和API会自动调用toString方法,利用这个特点可以简化程序的调试输出.</p>
+<pre><code>     如:println(p)会自动调用toString
+</code></pre>
+
+</li>
+<li>
+<p>1.6)String 也重写了 equals 方法用于比较两个字符串对象是否相等</p>
+</li>
+</ul>
+<h3>2) equals</h3>
+<ul>
+<li>
+<p>Object 提供了比较两个对象是否相等的方法equals</p>
+</li>
+<li>
+<p>2.1)默认的equals方法不能比较对象中数据是否相等,  建议子类重写这个方法!</p>
+</li>
+<li>
+<p>2.2)重写时,按照关键数据比较两个对象是否相等</p>
+<pre><code>    如下两个对象,不同的对象,但是关键数据是相同的.
+    是数据相等 的对象
+    利用没有重写的equals 比较
+        Point p1 = new Point(3,4);
+        Point p2 = new Point(3,4);
+        boolean b = p1.equals(p2);
+        System.out.println(b);   //false 
+
+    利用重写的equals方法比较两个对象相等
+        Cell c1 = new Cell(3,4);    
+        Cell c2 = new Cell(3,4);
+        Cell c3 = new Cell(5,4);
+        System.out.println(c1.equals(c2));   //true
+        System.out.println(c1.equals(c3));  //false 
+</code></pre>
+
+</li>
+<li>
+<p>2.3)重写equals</p>
+</li>
+<li>
+<pre><code>public boolean equals(Object obj){
+    if(obj==null){
+        return false;   
+    }
+
+    //方法执行期间 this 是当前对象
+    //obj是另外一个对象的引用
+    //比较关键数据:就是比较this(row,col)
+    //和obj(row,col)是否相等 
+    if(this==obj){
+        return true; //性能好
+    }
+
+    if(obj instanceof Cell){
+        Cell other = (Cell)obj;
+        return this.row == other.row
+                &amp;&amp;
+                this.col == other.col;
+        }
+
+    return false;
+}
+</code></pre>
+
+</li>
+</ul>
+<h2>3.包装类</h2>
+<ul>
+<li>
+<p>用于将基本类型包装为对象</p>
+</li>
+<li>
+<p>包装类是final 修饰的 不可变类 在构造了包装类对象后,不允许 更改包装在其中的值;</p>
+</li>
+<li>
+<p>Number  是 Integer Character 等 六种基本类型的父类型 </p>
+<pre><code>    Object 是 char 和 boolean 的父类型
+</code></pre>
+
+</li>
+<li>
+<p>Number 定义的子类型的公用方法, 全部子类型都继承了这些方法.</p>
+</li>
+<li>
+<p>Number 定义的方法包括:6种数值类型相互转换的方法</p>
+</li>
+<li>
+<p>Java 5 开始提供了自动装包和自动拆包,目的是简化编程, 简化程序员的负担,编程期间将代码替换为对应的包装类方法</p>
+</li>
+</ul>
+<h3>3.1)创建对象:</h3>
+<pre><code>Number n = new Integer(5);
+Double x = new Double(4.5);
+</code></pre>
+
+<h3>3.2)int intValue();	---- 包装类--&gt;基本类型(拆包)</h3>
+<ul>
+<li>
+<p>API 提供了将基本类型转换为包装类型的方法, 也提供了将包装类型转换为基本类型的方法</p>
+<p>例:
+Number n = new Integer(5);</p>
+<pre><code>//doubleValue()是类型转换方法
+</code></pre>
+
+<p>double d = n.doubleValue(); //拆包</p>
+<p>System.out.println(d); //5.0</p>
+</li>
+</ul>
+<h3>3.3)Integer.valueOf(传入基本类型);  ----基本类型--&gt;包装类型(装包)</h3>
+<pre><code>例:
+int i = 3;
+
+Double d = Double.valueOf(i);
+System.out.println(d);  //3.0
+</code></pre>
+
+<h3>3.4)int Integer.parseInt(10进制字符串)--------字符串--&gt;为基本类型</h3>
+<ul>
+<li>
+<p>包装类提供了 &quot;10进制String&quot; 到 基本类型(2进制)的转换方法,这些方法是是Java最核心方法:
+  &quot;Java 能够认识10进制全靠这些方法了!!&quot;</p>
+<pre><code>double Integer.parseDouble(10进制字符串)-----将字符串转换为数值
+
+例:
+int n = Integer.parseInt(&quot;-9&quot;);
+double pi = Double.parseDouble(&quot;3.1415926535897932384626&quot;);
+</code></pre>
+
+</li>
+</ul>
+<h3>3.5)String String.valueOf(传入基本类型)---------基本类型--&gt;字符串</h3>
+<pre><code>    int i = 3;
+
+    String str = String.valueOf(i);
+    System.out.println(str);  // 字符串&quot;3&quot;
+</code></pre>
+
+<h3>3.6)double Double.MAX_VALUE-------求最大值;</h3>
+<h3>3.7)int Integer.MIN_VALUE;--------求最小值;</h3>
+<h1>API-day03</h1>
+<h2>1.Date类</h2>
+<ul>
+<li>
+<p>java .util.Date</p>
+</li>
+<li>
+<p>Date 的每一个实例用于表示一个确切的时间点</p>
+</li>
+<li>
+<p>由于Date设计存在缺陷,所以在JDK1.1以后大部分方法就被声明为过时的,不再建议使用现在使用Date仅用来表示时间.时间相关的操作全部使用 Celender 来代替</p>
+</li>
+</ul>
+<h3>1.1)创建对象: Date date = new Date();</h3>
+<ul>
+<li>
+<p>在括号中传入一个毫秒值 则表示毫秒值代表的时间</p>
+</li>
+<li>
+<p>默认创建出来表示当前系统时间 Date重写了toString方法,输出的是当前Date表示的日期时间.</p>
+<pre><code>    Date date = new Date(); 
+    System.out.println(date);
+</code></pre>
+
+</li>
+</ul>
+<h3>1.2)long getTime()---获取Date内部维护的long值 (毫秒值)1970-1-1至此时此刻的</h3>
+<pre><code>    Date date = new Date();
+
+    long l = date.getTime();
+    System.out.println(l);
+</code></pre>
+
+<h3>1.3)void setTime(Long time); ---为Date设置一个long值,使其表示该long值所表示的时间</h3>
+<pre><code>    Date date = new Date();
+
+    l += 1000*60*60*24; //加上一天的毫秒数
+
+    date.setTime(l);
+    System.out.println(date);
+</code></pre>
+
+<h2>2 java.text.SimpleDateFormat</h2>
+<ul>
+<li>可以按照一个给定的日期格式在Date与String之间相互转换.</li>
+</ul>
+<h3>2.1)创建对象:</h3>
+<pre><code>SimpleDateFormat sdf = new SimpleDateFormat(&quot;yy年MM月dd日 hh:mm:ss a E&quot;);
+</code></pre>
+
+<h3>2.2)String sdf.format(Date date)------  Date --&gt; 字符串</h3>
+<pre><code>    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss a E&quot;);
+    String ss = sdf.format(date);
+    System.out.println(ss);
+</code></pre>
+
+<h3>2.3)Date parse(String source)--------字符串 --&gt; Date</h3>
+<ul>
+<li>
+<p>按照SDF指定的日期格式将给定字符串解析为Date对象</p>
+<pre><code>Date date = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss&quot;)
+String dd = &quot;2008-08-08 12:30:59&quot;;
+
+date = sdf.parse(dd);
+System.out.println(date);
+</code></pre>
+
+</li>
+</ul>
+<h2>3.java.util.Calendar 日历类</h2>
+<ul>
+<li>
+<p>日历类,定义了操作时间的相关方法.</p>
+</li>
+<li>
+<p>Date大部分方法声明为过时的而代替方案就是使用Calendar</p>
+</li>
+<li>
+<p>Calendar 本身是抽象类,规定了操作时间的方法定义,</p>
+</li>
+<li>
+<p>常用实现类GregorianCalendar, 即:阳历立法</p>
+</li>
+<li>
+<p>Calendar提供了一个静态方法getInstance()来根据当前系统所在地区返回一个适用的实现类,大部分地区返回的都是阳历实现类.</p>
+</li>
+</ul>
+<h3>3.1)创建对象:Canlendar calendar = Calendar.getInstance();</h3>
+<ul>
+<li>
+<p>创建了一个对象,返回一个适用的实现类GregorianCalendar,同下:</p>
+<pre><code>Calendar calendar = new GregorianCalendar(); 
+</code></pre>
+
+</li>
+</ul>
+<h3>3.2)Date getTime()------获取一个Date对象</h3>
+<ul>
+<li>
+<p>Calendar提供的该方法可以获取一个Date对象,该对象就表示当前Calendar所表示的日期</p>
+<pre><code>Calendar calendar = Calendar.getInstance();
+
+Date date = calendar.getTime();
+System.out.println(date);
+</code></pre>
+
+</li>
+</ul>
+<h3>3.3)void setTime(Date date)----设置给定的Date所表示的日期</h3>
+<ul>
+<li>
+<p>使当前Calendar表示给定的Date所表示的日期</p>
+<pre><code>Calendar calendar = Calendar.getInstance();
+Date date = new Date();
+
+calendar.setTime(date);
+</code></pre>
+
+</li>
+</ul>
+<h3>3.4)void add(int field, int value)----对指定时间分量加定值</h3>
+<ul>
+<li>
+<p>对指定时间分量加定值.若传入的值为负数,则减去给定的值</p>
+<pre><code>Calendar calendar = Calendar.getInstance();
+
+//对年中的日加3天
+calendar.add(Calendar.DAY_OF_YEAR, 3);
+</code></pre>
+
+</li>
+</ul>
+<h3>3.5)void set(int field, int value)---设置给定时间分量值</h3>
+<ul>
+<li>
+<p>设置为给定的时间分量值</p>
+</li>
+<li>
+<p>月从0开始算</p>
+</li>
+<li>
+<p>每周第一天从周日开始</p>
+<pre><code>Calendar calendar = Calendar.getInstance();
+
+//设置为当周的第2天
+calendar.set(Calendar.DAY_OF_WEEK, 2);
+</code></pre>
+
+</li>
+</ul>
+<h3>3.6)int get(int field)----获取指定时间分量对应的值</h3>
+<ul>
+<li>
+<p>该方法可以获取当前Calendar中指定时间分量所对应的值. (如获取今年的值)</p>
+</li>
+<li>
+<p>时间分量是一个int值,在Calendar中有大量的常量定义了不同的时间分量</p>
+<pre><code>Calendar calendar = Calendar.getInstance();
+
+//获取今年是哪一年?
+int in = calendar.get(Calendar.YEAR);
+System.out.println(in);
+</code></pre>
+
+</li>
+</ul>
+<h2>4)Collection  --集合类</h2>
+<p><img src="jihe.jpg" /></p>
+<ul>
+<li>
+<p>java.util.Collection是一个接口 </p>
+</li>
+<li>
+<p>集合,用来存储一组元素,提供了相关操作元素的方法.</p>
+</li>
+<li>
+<p>集合存放的是元素的引用(地址)</p>
+</li>
+<li>
+<p>有两个常见的子接口:</p>
+<pre><code>List :可重复集,且有序;
+Set: 不可重复集,大部分实现类是无序的.
+
+元素是否重复是依靠元素自身equals方法比较的结果  
+</code></pre>
+
+</li>
+<li>
+<p>Collection 中的方法在 ArrayList LinkedList HashSet ( )都可以用</p>
+</li>
+<li>
+<p>数组和集合(线性表)区别: </p>
+<pre><code>数组:只能存储数据
+集合:存数据还提供算法  底层就是利用的数组
+</code></pre>
+
+</li>
+</ul>
+<h3>4.1)创建对象:</h3>
+<pre><code>        接口              实现类
+         |                |
+    Collection c = new LinkedList();
+
+    Collection c = new ArrayList();
+</code></pre>
+
+<h3>4.2)boolean add(E e)---------添加元素</h3>
+<ul>
+<li>
+<p>向集合中添加指定元素,成功添加返回true</p>
+<pre><code>Collection collection = new ArrayList();
+boolean b = collection.add(&quot;e&quot;);
+</code></pre>
+
+</li>
+</ul>
+<h3>4.3)boolean addAll(Collection c)---------将给定集合中的全部元素添加到当前元素</h3>
+<ul>
+<li>
+<p>添加成功返回true, 否则返回false</p>
+<pre><code>Collection c1 = new ArrayList();
+Collection c2 = new ArrayList();
+
+//将c2集合中的所有元素添加到c1集合中
+boolean b = c1.addAll(c2);
+</code></pre>
+
+</li>
+</ul>
+<h3>4.4)boolean isEmpty();--------  判断集合是否为空巢</h3>
+<ul>
+<li>
+<p>判断集合是否为空巢(不含有任何元素)</p>
+</li>
+<li>
+<p>如果为空 返回true 否则返回false</p>
+<pre><code>Collection collection = new ArrayList();
+
+boolean b = collection.isEmpty();
+</code></pre>
+
+</li>
+</ul>
+<h3>4.5)int size();--------------返回当前集合的元素个数</h3>
+<pre><code>    Collection collection = new ArrayList();
+
+    int n = collection.size();
+</code></pre>
+
+<h3>4.6)void clear();--------清空集合</h3>
+<pre><code>    Collection collection = new ArrayList();
+
+    collection.clear();
+</code></pre>
+
+<h3>4.6)boolean contains (E e)------判断当前集合是否包含给定元素</h3>
+<ul>
+<li>
+<p>括号中一般放object 程序前提是元素必须有equals比较方法</p>
+<pre><code>Collection collection = new ArrayList();
+
+boolean b = collection.contains(obj);
+</code></pre>
+
+</li>
+</ul>
+<h3>4.7)boolean containsAll (Collection c)------判断当前集合是否包含给定集合中元素</h3>
+<ul>
+<li>
+<p>如果包含返回true; 否则返回false;
+	Collection c1 = new ArrayList();
+	Collection c2 = new ArrayList();</p>
+<pre><code>boolean b = c1.contains(c2);
+</code></pre>
+
+</li>
+</ul>
+<h3>4.8)boolean remove(Object obj);---------移除集合内给定元素</h3>
+<ul>
+<li>
+<p>移除成功返回true; 否则返回false</p>
+<pre><code>Collection collection = new ArrayList();
+
+boolean b = collection.remove(obj);
+</code></pre>
+
+</li>
+</ul>
+<h1>API-day04</h1>
+<h2>1.Iterator 迭代器</h2>
+<h3>1.1)创建对象:</h3>
+<ul>
+<li>
+<p>该对象,用于遍历集合,对 collection 进行迭代</p>
+<pre><code>    Collection collection = new ArrayList();
+
+    Iterator ite = collection.iterator();
+</code></pre>
+
+</li>
+</ul>
+<h3>1.2)boolean hasNext();--------检查是否有下一个引用</h3>
+<ul>
+<li>如有下个元素则返回true, 否则返回false;</li>
+</ul>
+<h3>1.3)E next() ------移动游标到下个位置,返回迭代的下一个元素。</h3>
+<p>*使用Object类型接收</p>
+<h3>1.4)void remove()-----移除集合中的元素 ###</h3>
+<h3>1.5)迭代器遍历集合 ###</h3>
+<ul>
+<li>hasNext  和 next 在循环体中只能调一次</li>
+<li>
+<p>遍历期间可以使用 remove() 方法移除元素</p>
+<pre><code>Collection c1 = new ArrayList();
+Iterator ite = c1.iterator();
+
+while(ite.hasNext()){       //检查是否有下一个引用 ,直到下个元素为空
+    String str = (String)ite.next();    //移动游标到下个位置,返回引用集合中的元素给str
+    System.out.println(str);
+    ite.remove(); //移除元素
+    //c1.remove();//如果使用集合的方法删除元素会报拋出异常错误
+}
+
+(迭代器遍历集合时，不要通过集合的方法修改和删除元素否则抛出异常)
+迭集器和集合之间,没有互斥关系,如果一个线程正在遍历 一个线程删除,则会报错
+</code></pre>
+
+</li>
+</ul>
+<h3>1.6)foreach:(增强for) ###</h3>
+<ul>
+<li>foreach 循环不能遍历(迭代)期间删除集合中的元素!! 如果需要删除请使用传统的迭代器实现!</li>
+<li>如果集合泛型了,使用泛型的类型接收</li>
+<li>没有泛型,使用Object类型接收</li>
+<li>
+<pre><code>Collection c1 = new ArrayList();
+
+for(String str : c1){     // “：” 前声明接收类型，“：”后放集合或数组 
+    System.out.println(str);
+}
+</code></pre>
+
+</li>
+</ul>
+<h3>1.7)泛型:对集合泛型</h3>
+<pre><code>Collection&lt;String&gt; c1 = new ArrayList&lt;String&gt;();
+    &lt;String &gt; 泛型&lt;约束类型&gt;
+</code></pre>
+
+<ul>
+<li><String> 约束了c1集合中只能存储String类型的数据,如果放入其他数据,将出现编译错误</li>
+</ul>
+<h2>2) List(类)</h2>
+<ul>
+<li>实现类 ArrayList 数组实现 读得多 改得少,建议使用</li>
+<li>实现类 LinkedList 链表实现 增删性能好,建议使用</li>
+</ul>
+<h3>2.1)创建对象:</h3>
+<pre><code>List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+
+List&lt;String&gt; list = new LinkedList&lt;String&gt;();
+</code></pre>
+
+<h3>2.2)E get(int index);----------返回列表中指定位置的元素。</h3>
+<ul>
+<li>便用Object 或 泛型的类型接收</li>
+</ul>
+<h3>2.3)E set(int index, E e) 用指定元素替换列表中指定位置的元素</h3>
+<pre><code>    List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+
+            替换的位置  替换的内容
+                |          |
+    list.set(    3,      &quot;mac&quot;   ) 替换 有返回值
+</code></pre>
+
+<ul>
+<li>
+<p>get()方法和 set()方法结合使用 可以在列表内进行两个元素的位置替换</p>
+<p>list.set(3,list.set(2,list.get(3))) //列表内元素替换 有返回值</p>
+</li>
+</ul>
+<h3>2.4)void add(int index, E element);------集合内指定位置添加给定元素</h3>
+<pre><code>list.add(2,&quot;ee&quot;)
+</code></pre>
+
+<h3>2.5)E remove(int index);--------//删除有返回值 即删除的元素</h3>
+<h3>2.6)List&lt;E&gt; subList(int fromIndex, int toIndex);------获取列表的子列表</h3>
+<ul>
+<li>子列表:子列表与主列表共享同一个存储空间  如果删除子列表,主列表中也被删除</li>
+<li>
+<p>子列表:位置含头不含尾</p>
+<pre><code>List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+
+//获取子列表
+List&lt;String&gt; sub = list.subList(1, 1+4);      
+</code></pre>
+
+</li>
+</ul>
+<h3>2.7) T[ ] toArray(T[ ] ary)----------List转换为数组</h3>
+<ul>
+<li>1,如果参数数组长度比集合长度小了, 则必须接收返回值,返回值是新数组的引用  (需创建数组接收)</li>
+<li>2,如果参数数组长度正好,则返回值是参数数组本身 可以不必接收返回值</li>
+<li>
+<p>3,如果参数数组长度大了,返回值也是参数数组本身,可以不必接收返回值</p>
+</li>
+<li>
+<p>目的:为了做了些性能比较高的算法需要将集合复制到数组中</p>
+<pre><code>List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+
+String[] ary = new String[4];  //参数数组
+
+//如果参数数组长度大于或等于 集合长度 则不必接收
+list.toArray(ary);  
+
+//如果参数数组长度小于集合长度,则需要接收
+String[] arr = list.toArray(ary);
+
+
+补充: Arrays.fill(ary,&quot;A&quot;);  &gt;&gt; 将数组中每个元素赋值为A
+
+    Arrays.toString(ary);&gt;&gt;将数组中的元素转换为String类型输出
+</code></pre>
+
+</li>
+</ul>
+<h3>2.8)Arrays.asList(ary);-------数组转换为List</h3>
+<ul>
+<li>创建一个list集合接收</li>
+<li>
+<p>用法:List &lt;String&gt; list = Arrays.asList(ary);</p>
+</li>
+<li>
+<p>目的:将数组作为线性表使用:</p>
+<p>1.与数组共享存储空间</p>
+<p>2.不是完整功能的List ,不能改变长度</p>
+</li>
+<li>
+<p>修改数组内容 会影响List, 修改List 会影响数组  集合长度不能改变</p>
+<pre><code>例:
+
+String[] ary = {&quot;123&quot;,&quot;234&quot;,&quot;dfs&quot;};
+
+List&lt;String&gt; list = Arrays.asList(ary);
+</code></pre>
+
+</li>
+</ul>
+<h3>2.9)List排序</h3>
+<ul>
+<li>
+<p>一般JAVA提供的API都实现了 Comparble  接口中的 CompareTo 进行排序的方法, String Date Integer包装类 都可以实现排序,自己创建的类是不能使用CompareTo进行排序的 如果使用则需要实现Comparble接口, 然后重写CompareTo,但是不建议重写CompareTo方法, 可以自定义比较器 实现重载</p>
+</li>
+<li>
+<p>用法1:</p>
+<p>自然排序:Collections.sort(list) 对List集合中的元素进行排序</p>
+<ul>
+<li>
+<p>要求:list集合中的元素必须实现Comparable接口,必须实现compareTo方法 ,一般用于java对提供的API对象进行排序  如: String Date, Integer, Double 等 包装类</p>
+</li>
+<li>
+<p>compareTo</p>
+</li>
+<li>
+<p>sort  方法是如何比较两个字符串大小的?</p>
+<p>1)内部 是按照unicode码进行排序的</p>
+<p>2)String类型提供比较字符串大小的方法</p>
+<p>3)compare比较 to 比xxx比较</p>
+<p>4)compareTo 返回3种状态: &gt;0 &lt;0 ==0</p>
+<p>4.1)n &gt; 0 表示 第一个字符串大</p>
+<p>4.2)n &lt; 0 表示 第一个字符串小</p>
+<p>4.3)n = 0 表示 两个字符串一样!!</p>
+<p>4.4)int n = &quot;Andy&quot;.compareTo(&quot;Jerry&quot;);  //返回值类型是int型   
+</p>
+<pre><code>例:
+
+public class Emp implements Comparable&lt;Emp&gt; {}
+
+    public int compareTo(Emp e) {
+        return e.age-this.age;
+    }
+</code></pre>
+
+</li>
+</ul>
+</li>
+<li>
+<p>用法2:</p>
+<p>自定义排序 Collections.sort(list. 比较器);</p>
+<ul>
+<li>
+<p>即 自定义比较器,实现重载sort方法</p>
+</li>
+<li>
+<p>重载的sort方法可以实现任意对象的自定义排序!</p>
+</li>
+<li>
+<p>要求:对list集合中的对象没有限制,必须提供&quot;比较器&quot;对象,sort会利用比较器进行比较排序</p>
+</li>
+<li>
+<p>用途广泛:可以进行任意数据比较排序	</p>
+<p>1)实现自定义比较器 创建一个类实现 实现一个接口 Comparator</p>
+<pre><code>class ByAge implements Comparator&lt;Cat&gt;{}   Cat :自己创建的类
+
+自定义的比较算法:按照猫对象的年龄比较大小
+
+如果返回&gt;0 则 o1&gt; o2
+
+如果返回&lt;0 则 o1&lt;o2
+
+如果返回=0 则 o1=o2;
+</code></pre>
+
+<p>2)重写compare方法</p>
+<pre><code>public int compare(Cat o1, Cat o2){
+
+    int a1 = o1.age;
+
+    int a2 = o2.age;
+
+    //return a1-a2;//经典写法  如果大到小排序  return  -(a1-a2);
+
+    if(a1 &gt; a2){
+        return 1;
+    }else if(a1&lt;a2){
+        return -1;
+    }
+    return 0;
+}
+</code></pre>
+
+<p>3)调用排序</p>
+<pre><code>Collections.sort(list,new ByAge());
+</code></pre>
+
+<p>4)方法只使用一次,可以用匿名内部类</p>
+<pre><code>Comparator&lt;E&gt;  com = new Comparator&lt;E&gt;(){
+
+     public int compare(E e1, E e2) {
+        return e2.age-e1.age;
+    }
+}
+
+调用时：Collections.sort(list,com);
+</code></pre>
+
+</li>
+</ul>
+</li>
+</ul>
+<h1>API day05</h1>
+<h2>1.队列</h2>
+<ul>
+<li>
+<p>java.util.Queue</p>
+</li>
+<li>
+<p>队列, 继承自集合 Collection </p>
+</li>
+<li>
+<p>LinkedList实现了Queue接口</p>
+</li>
+<li>
+<p>可以存储一组元素,但是存取元素必须遵循&quot;先进先出&quot;原则</p>
+</li>
+<li>
+<p>只能从线性表的一端添加,从另一端取出</p>
+</li>
+<li>
+<p>队列 实现了List接口 同时实现了Queue接口</p>
+</li>
+</ul>
+<h3>创建队象:Queue&lt;String&gt; queue = new LinkedList&lt;String&gt;();</h3>
+<h3>1).offer(E e) 添加元素</h3>
+<h3>2)E poll();-----出队操作</h3>
+<pre><code>2.1)从队首获取元素,获取后该元素就从队列中被移除.
+</code></pre>
+
+<h3>3)E peek();-----引用队首元素</h3>
+<pre><code>3.1)引用队首元素,获取队首元素后该元素还在队列中
+</code></pre>
+
+<h3>4)迭代器遍历(遍历完成,元素还在队列中)</h3>
+<pre><code>for(String e:queue){
+    System.out.println(e);
+}
+</code></pre>
+
+<h3>5)自行遍历(遍历完成,元素被取出)</h3>
+<pre><code>while(queue.size()&gt;0){
+    String str = queue.poll();
+    System.out.println(str);
+}
+实际用法:服务器排队
+</code></pre>
+
+<h2>2.双端队列</h2>
+<ul>
+<li>
+<p>双端队列接口继承自队列接口(Queue)  -Queue -Deque -LinkedList</p>
+</li>
+<li>
+<p>两端都可以进出队的队列,</p>
+</li>
+</ul>
+<h3>创建对象:Deque&lt;String&gt; deque = new LinkedList&lt;String&gt;();</h3>
+<h3>1)offerFirst(E e);-----从队首添加元素</h3>
+<h3>2)offerLast(E e);-----从队尾添加元素</h3>
+<h3>3)E pollFirst();-----从队首取出元素</h3>
+<h3>4)E pollLast();-----从队尾取出元素</h3>
+<h3>5)E peekFirst();-----引用队首元素 ,元素不被取出</h3>
+<h3>6)E peekLast();-----引用队尾元素 ,元素不被取出</h3>
+<h3>7)迭代器遍历(遍历完成,元素还在队列中)</h3>
+<pre><code>for(String e:deque){
+    System.out.println(e);
+}
+</code></pre>
+
+<h3>8)自行遍历(遍历完成,元素被取出)</h3>
+<pre><code>while(deque.size()&gt;0){
+    String str = deque.pollFirst();
+    System.out.println(str);
+}
+</code></pre>
+
+<h2>3.栈</h2>
+<ul>
+<li>
+<p>栈结构:</p>
+<p>栈用来存储一组元素,但是存取元素必须遵循先进后出原则(FILO,First Input, Last Output)</p>
+<p>栈结构常被用来实现&quot;后退&quot;功能</p>
+<p>Deque是双端队列,但是若只从一端进出队就实现了栈结构</p>
+</li>
+</ul>
+<h3>创建对象:Deque&lt;String&gt; stack = new LinkedList&lt;String&gt;();</h3>
+<h3>1)push(E e) -----进栈</h3>
+<h3>2)E pop();-----弹栈</h3>
+<pre><code>    2.1)有返回值,返回值为弹出的元素
+</code></pre>
+
+<h3>3)迭代器遍历 (遍历完成后,元素还在)</h3>
+<pre><code>    for(String s:stack){
+        System.out.println(s);
+    }
+</code></pre>
+
+<h3>4)自行遍历(遍历完成后,元素被弹出)</h3>
+<pre><code>    while(stack.size()&gt;0){
+        str = stack.pop();
+        System.out.println(str);
+    }
+</code></pre>
+
+<h2>4.Map 查找表</h2>
+<ul>
+<li>java.util.Map</li>
+<li>查找表,以key-value 对的形式存储元素.  (键-值)</li>
+<li>常用实现类:java.util.HashMap</li>
+<li>HashMap:散列表,以散列算法实现的Map</li>
+<li>Map要求key不允许重复,是否重复取决于key元素equals方法比较的结果</li>
+<li>泛型 要指定两个类型个 键K, 值V</li>
+</ul>
+<h3>创建对象:Map&lt;String, Integer&gt; map = new HashMap&lt;String, Integer&gt;();</h3>
+<h3>1) V put(K k, V v)-----将对应的键值存入到Map中</h3>
+<pre><code>    1.1)由于Map 要求key不允许重复,所以若使用已有的key存入新的value则是替换key原来对应的
+    value值,并将其返回(返回值为替换掉的V值).若指定的key在Map中不存在,则返回值为null.
+    1.2)尽量不使用基本类型去接收返回值,因为若返回值为null,触发自动拆箱时会引起空指针异常
+</code></pre>
+
+<h3>2) V get(K k)-----获取指定key所对应的value</h3>
+<pre><code>    2.1)若指定的key在map中不存在则返回null
+</code></pre>
+
+<h3>3)V remove(K k)----- 将给定的key对应的键值对从map中删除</h3>
+<pre><code>    3.1)返回值为该key对应的value
+</code></pre>
+
+<h3>4)int size();-----获取元素长度</h3>
+<h3>5) boolean containsKey(K k);------判断当前map是否包含给定的key</h3>
+<pre><code>    5.1)判断标准还是参考元素equals比较的结果
+</code></pre>
+
+<h3>6)boolean containsValue(V v);------判断当前map是否包含给定的value</h3>
+<pre><code>    6.1)判断标准还是参考元素equals比较的结果
+</code></pre>
+
+<h3>7)Set keySet()-----获取所有K值 (遍历所有的Key)</h3>
+<pre><code>    7.1)该方法会将当前Map中所有的key存入一个Set集合后返回
+        Set&lt;String&gt; keySet = map.keySet();
+        for(String key: keySet){
+            System.out.println(&quot;key:&quot;+key);
+        }
+</code></pre>
+
+<h3>8)Set entrySet()  ----- 获取每一组键值对(遍历所有键值对)</h3>
+<ul>
+<li>返回值为Set集合</li>
+<li>K getKey()------获取该键值对的key值</li>
+<li>
+<p>V getValue()------获取该键值对的value值</p>
+<pre><code>8.1)Entry是Map的内部类,其每一个实例用于表示Map中一组键值对
+8.2)常用方法:getKey,getValue. 这两个方法分别用于获取该组键值对中的key与value
+8.3)entrySet方法会将当前map中每一组键值对以一个Entry实例的形式存入Set集合后将该Set集合返回.
+
+
+//遍历每一组键值对
+Set&lt;Entry&lt;String,Integer&gt;&gt; entrySet = map.entrySet();
+    for(Entry&lt;String,Integer&gt; e : entrySet){
+        String key = e.getKey();
+        Integer value = e.getValue();
+        System.out.println(key+&quot;:&quot;+value);
+}
+</code></pre>
+
+</li>
+</ul>
+<h3>9)Collection values()-----将Map内所有的value存入一个集合</h3>
+<pre><code>    9.1)遍历所有的value.
+    Collection&lt;Integer&gt; values = map.values();
+        for(Integer i :values){
+            System.out.println(i);
+        }
+</code></pre>
+
+<h3>10)HashMap  查询性能</h3>
+<pre><code>        影响散列表(HashMap)查询性能的一个主要原因是在HashMap中产生链表产生链表的主要情况有两种:        
+        1:元素多,概率问题(通过加载因子解决,也要避免护容rehash,可以给定一个长度)
+        2:作为Key元素 equals方法与hashcode方法的重写不当.
+
+        当两个key的hashcode值相同时,它们在HashMap内部数组(散列桶)中的位置就相同,若这两个key的equals
+    方法比较为false时就会产生链表.  
+
+        当一个类在重写equals方法时就应当连同重写hashCode方法.并且遵循以下原则:
+            稳定性:在一个对象参与equals比较的属性值没有发生改变的前提下,多次调用hasoCode值返回的数字必须相同. 不能是随机数
+            一致性:当两个对象equals比较为true时,hashcode值要相等 
+
+        反过来若两个对象hashcode值相等 equals方法也应当为true,若不然则可能会在   HashCode中出现链表
+        影响查找性能.
+</code></pre>
+
+<h1>API-day06</h1>
+<h2>1.File类</h2>
+<ul>
+<li>java.io.File</li>
+<li>File的每一个实例用于表示文件系统中的一个文件或目录</li>
+<li>
+使用File可以:
+<ul>
+<li>1:访问文件或目录的属性信息(名字,大小,修改时间等 )</li>
+<li>2:操作文件或目录(创建,删除)</li>
+<li>3:访问目录子项</li>
+</ul>
+</li>
+<li>但是不能访问文件数据</li>
+</ul>
+<h3>创建对象:File file = new File(&quot;.&quot;+File.separator+&quot;Demo.txt&quot;);</h3>
+<pre><code>    File file = new File(&quot;test.txt&quot;);
+    当前目录下创建一个名为test.txt的文件 
+     * &quot;.\&quot; 不写默认也是在当前目录下
+     * \: 用File.separator 代替
+</code></pre>
+
+<ul>
+<li>在使用路径时尽量使用相对路径,因为绝对路径不同的系统是不一样的,这就导致跨平台会有问	题.</li>
+<li>
+相对路径常用:
+<ul>
+<li>1:类加载路径(最常用)</li>
+<li>2:当前目录, 在eclipse中当前目录就是指当前类所在的项目目录</li>
+</ul>
+</li>
+</ul>
+<h3>1)String getName();------获取文件名字</h3>
+<h3>2)long length();-------获取文件字节量</h3>
+<h3>3)boolean canRead();----------查看文件是否可读</h3>
+<h3>4)boolean canWrite();--------查看文件是否可写</h3>
+<h3>5)boolean isHidden();--------查看文件是否隐藏</h3>
+<h3>6)long lastModified();--------查看文件最后修改时间</h3>
+<pre><code>long time = file.lastModified();
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+System.out.println(&quot;最后修改时间:&quot;+sdf.format(time));
+</code></pre>
+
+<h3>7)boolean exists()--------判断当前File 表示的文件或目录是否真实存在</h3>
+<h3>8)boolean createNewFile() ------创建文件,成功返回true</h3>
+<pre><code>if(!file.exists()){
+    file.createNewFile(); //拋异常 
+    System.out.println(&quot;文件创建完毕&quot;);
+}else{
+    System.out.println(&quot;该文件已存在!&quot;);
+}
+</code></pre>
+
+<h3>9)boolean delete();------删除文件或目录 成功返回true</h3>
+<ul>
+<li>
+<p>使用delete方法删除目录时要求该目录必须是个空目录,否则无法删除.</p>
+<pre><code>if(file.exists()){
+    file.delete();
+    System.out.println(&quot;文件删除成功&quot; );
+}else{
+    System.out.println(&quot;该文件不存在&quot;);
+}
+</code></pre>
+
+</li>
+</ul>
+<h3>10)boolean mkdirs();-------创建多层目录</h3>
+<pre><code>File dir = new File(
+            &quot;a&quot;+File.separator+
+            &quot;b&quot;+File.separator+
+            &quot;c&quot;+File.separator+
+            &quot;e&quot;+File.separator+
+            &quot;f&quot;+File.separator+
+             &quot;g&quot;);
+if(!dir.exists()){
+        dir.mkdirs();
+        System.out.println(&quot;目录创建成功&quot;);
+    }else{
+        System.out.println(&quot;该目录已存在&quot;);
+</code></pre>
+
+<h3>11)boolean isFile();-------判断当前File表示的是否为一个文件</h3>
+<h3>12)boolean isDirectory();---------判断当前File表示的是否为一个目录</h3>
+<h3>13)Fils[ ] listFiles();-----------获取当前目录中的所有子项</h3>
+<pre><code>File dir = new File(&quot;.&quot;);
+if(dir.isDirectory()){
+        File[] subs = dir.listFiles();
+        for(File sub:subs){
+            if(sub.isDirectory()){
+                System.out.print(&quot;目录:&quot;);
+            }
+            if(sub.isFile()){
+                System.out.print(&quot;文件&quot;);
+            }
+            System.out.println(sub.getName());
+</code></pre>
+
+<h3>例: 完成方法,将给定的文件或目录删除</h3>
+<pre><code>public static void main(String[] args) {
+
+    File dir = new File(&quot;a&quot;);
+    delete(dir);
+}
+
+public static void delete(File file){
+
+    if(file.isDirectory()){
+        File[] subs = file.listFiles();//获取子文件 
+        for(File sub: subs){
+            delete(sub);  //调用自己
+        }
+    }
+    file.delete();
+}
+
+
+-   补充:
+        -递归调用: 递归是将一个方法中所有代码复新执行.
+         方法内部调用自己方法的行为称为递归
+      使用递归要注意:
+         1:递归的层数不要太多,因为递归调用开销较大
+         2:递归调用在方法中不能必然执行,必须在一个分支中控制它的调用,否则就是死循环.
+</code></pre>
+
+<h3>14)File[ ] listFiles(FileFilter filter) ---使用文件过滤器来获取一个目录中满足条件的所有子项</h3>
+<ul>
+<li>
+<p>File的这个重载的listFiles方法要求输入一个文件过滤器, 然后该方法会将当前目录中满足该过滤器要求的子项全部返回,不满足的会被忽略.</p>
+</li>
+<li>
+<p>要求:创建一个类,实现FileFilter 接口,重写里面的accept方法;或者创建匿名内部类</p>
+<pre><code>File dir = new File(&quot;.&quot;);
+//创建文件过淲器
+FileFilter filter = new FileFilter(){  //内部类
+    //accept方法是用来定义过滤条件
+    public boolean accept(File file){
+        String name = file.getName();
+        System.out.println(&quot;正在过滤:&quot;+name);
+        return name.startsWith(&quot;.&quot;);  //返回开头为&quot;.&quot;的文件名字
+    }
+};
+
+File[] subs = dir.listFiles(filter);  //参数内传入过滤器名
+for(File sub:subs){
+    System.out.println(sub.getName());
+}
+</code></pre>
+
+<p>}</p>
+</li>
+</ul>
+<h2>2.RandomAccessFile 类</h2>
+<ul>
+<li>java.io.RandomAccessFile</li>
+<li>用于读写文件数据的类</li>
+<li>RAF是基于指针形式读写文件数据的,比较灵活.</li>
+<li>
+<p>RAF有两种创建模式:只读模式和读写模式</p>
+<ul>
+<li>
+<p>RandomAccessFile的常用构造方法:</p>
+<ul>
+<li>RandomAccessFile(File file,String mode)  //文件名</li>
+<li>RandomAccessFile(String path, String mode) //文件路径</li>
+</ul>
+</li>
+<li>
+<p>模式常用的有:</p>
+<ul>
+<li>&quot;r&quot;:只读模式</li>
+<li>&quot;rw&quot;:读写模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>创建对象:RandomAccessFile raf = new RandomAccessFile(&quot;demo.dat&quot;,&quot;rw&quot;);</h3>
+<h3>1)void write(int d);--------向文件中写入int型数据</h3>
+<ul>
+<li>向文件中写入1个字节,写的是给定int值对应的二进制的&quot;低八位&quot;</li>
+<li>00000000 00000000 00000000 00000001</li>
+</ul>
+<h3>2)void write(byte[] data)----------向文件中写入byte[]型数据</h3>
+<pre><code>    2.1)如果是字符串,需将字符串使用.getBytes()方法获取字符再存入文件
+    2.2)void write(byte b[], int off, int len) 按读取到的字节长度写入
+</code></pre>
+
+<h3>2)int read();-----------读取一个字节</h3>
+<ul>
+<li>并将该字节二进制内容 以一个int值形式返回.</li>
+<li>若返回值为-1.则表示读取到了文件末尾</li>
+</ul>
+<h3>3）int read(byte[ ] data);-------按给定的字节量读取</h3>
+<pre><code>    byte[ ] data = new byte[int n];
+    int read(data);   ----读取指定的字节量
+</code></pre>
+
+<h3>4)void close();-----关闭</h3>
+<h3>5)文件COPY</h3>
+<pre><code>- 3.1)
+    RandomAccessFile src = new RandomAccessFile(&quot;tu.jpg&quot;,&quot;r&quot;);
+    RandomAccessFile desc = new RandomAccessFile(&quot;tu_new.jpg&quot;,&quot;rw&quot;);
+    int d;
+    while((d =src.read())!=-1){
+        desc.write(d);
+    }
+    System.out.println(&quot;复制完成!&quot;);
+    src.close();
+    desc.close();
+
+
+- 3.2)可以通过提高每次读写的数据量减少读写次数来达到提高读写效率的目的
+    RandomAccessFile src = new RandomAccessFile(&quot;photo.rar&quot;,&quot;r&quot;);
+    RandomAccessFile desc = new RandomAccessFile(&quot;photo_new.rar&quot;,&quot;rw&quot;);
+    byte[] data = new byte[1024*10];
+    int d = -1;
+    while((d =src.read(data)) != -1){
+        desc.write(data,0,d);
+    }
+    System.out.println(&quot;复制完毕!&quot;);
+    src.close();
+    desc.close();
+</code></pre>
+
+<h1>API-day07</h1>
+<h2>1.RandomAccessFile 类（续）</h2>
+<ul>
+<li>使用RAF读写基本类型数据 以及RAF基于指针读写的操作</li>
+</ul>
+<h3>1）void writeInt(int n); ------------ 写入基本类型数值</h3>
+<ul>
+<li>
+<p>void writeLong(int n);  //写入long型数值8个字节</p>
+</li>
+<li>
+<p>void writeDouble(int n);//写入double型数值8个字节</p>
+</li>
+<li>
+<p>void writeFloat(int n);//写入float型数值 4个字节</p>
+</li>
+</ul>
+<h3>2) int getFilePointer();----------获取指针位置</h3>
+<ul>
+<li>文件创建后,指针位置默认在文件开始</li>
+</ul>
+<h3>3) void seek(long pos)-------移动指针到指定位置</h3>
+<h3>4) byte[ ] getBytes();-----------按照系统默认字符集转换为一组字节</h3>
+<ul>
+<li>
+<p>String 提供了方法可以将当前字符串转换为一组字节</p>
+<p>String str = &quot;科技成就梦想,编程引领未来&quot;;
+byte[] data = str.getBytes(&quot;GBK&quot;);
+raf.write(data);</p>
+</li>
+</ul>
+<h3>5)byte[ ] getBytes(String csn)----------按照指定的字符集转换为一组字节</h3>
+<pre><code>    5.1）字符集名称常用的有GBK, UTF-8
+</code></pre>
+
+<h3>6）读字符串</h3>
+<ul>
+<li>
+<p>String 提供了构造方法可以将读取到的字节按照指定参数转换为String类型 并输出</p>
+</li>
+<li>
+<p>构造方法:String(byte bytes[], int offset, int length, String charsetName)</p>
+<pre><code>RandomAccessFile raf = new RandomAccessFile(&quot;raf.txt&quot;,&quot;rw&quot;);
+byte[] data = new byte[100];  
+int len = raf.read(data);
+String s = new String(data,0,len,&quot;gbk&quot;); // String构造方法
+System.out.println(s);
+</code></pre>
+
+</li>
+</ul>
+<h2>2.流</h2>
+<ul>
+<li>
+<p>流是java标准的读写操作方式</p>
+</li>
+<li>
+<p>流按功能分为:</p>
+<ul>
+<li>输入流:用来读取数据的流</li>
+<li>输出流:用来写出数据的流</li>
+</ul>
+</li>
+<li>
+<p>流分为:</p>
+<ul>
+<li>节点流(低级流):数据源明确,读写一定建立在低级流上,真实负责在数据源与程序间搬运数据.</li>
+<li>处理流(高级流):不能独立存在(没有意义),需要建立在其他流之上对其处理,使用处理流的目的在于简化读写操作</li>
+</ul>
+</li>
+</ul>
+<h2>3.文件流</h2>
+<p><img src="Stream.jpg" /></p>
+<ul>
+<li>
+<p>文件流是低级流</p>
+</li>
+<li>
+<p>文件流用于将数据写入文件中</p>
+</li>
+</ul>
+<h3>1)文件输出流</h3>
+<ul>
+<li>
+<p>java.io.FileOutputStream</p>
+<h4>1.1)构造方法:</h4>
+<ul>
+<li>
+<p>FileOutputStream(String path)</p>
+</li>
+<li>
+<p>FileOutputStream(File file)</p>
+</li>
+</ul>
+<p>上面两种形式创建的文件输出流默认为覆盖写操作,即:指定的文件若已经存在则会先将该文件所有数据清除,然后通过该流写出的内容会作为该文件内容 .</p>
+<ul>
+<li>
+<p>FileOutputStream(String path, boolean append)</p>
+</li>
+<li>
+<p>FileOutputStream(File file,boolean append)</p>
+</li>
+</ul>
+<p>上面两个构造方法的要求传入一个boolean 值参数,若该参数为true,则为追加写操作,通过当前流写出的内容会被追加到文件的末尾.</p>
+</li>
+</ul>
+<h4>1.2)创建对象: FileOutputStream fos = new FileOutputStream(&quot;fos.txt&quot;,true);</h4>
+<h4>1.3)例:</h4>
+<pre><code>        String str = &quot;在我心中曾经有一个梦&quot;;
+        byte[ ] data = str.getByte(&quot;GBK&quot;); //可以按指定字符集转换成字符
+        fos.write(data);//将转换后的字节写出文件
+</code></pre>
+
+<h3>2)文件输入流</h3>
+<h4>2.1)创建对象:FileInputStream fis = new FileInputStream(&quot;fos.txt&quot;);</h4>
+<h4>2.2)例:</h4>
+<pre><code>        byte[] data = new byte[200];
+        int len = fis.read(data);
+        String str =new String(data,0,len,&quot;UTF-8&quot;);
+        System.out.println(str);
+</code></pre>
+
+<h3>3)使用文件流复制文件</h3>
+<h4>例:</h4>
+<pre><code>FileInputStream fis = new FileInputStream(&quot;fos.txt&quot;);
+FileOutputStream fos = new FileOutputStream(&quot;fos_new.txt&quot;);
+
+    //读取文件到程序
+    byte[] data = new byte[200];
+    int len = -1;
+    while((len = fis.read(data)) != -1){
+        fos.write(data,0,len);  //将读取到的文件复制到新文件中
+    }
+
+    System.out.println(&quot;复制完毕&quot;);
+</code></pre>
+
+<h2>4.缓冲流</h2>
+<ul>
+<li>缓冲流是一对高级流,作用是提高读写效率.</li>
+<li>java.io.BufferedInputStream-----------缓冲输入流</li>
+<li>
+<p>java.io.BufferedOutputStream----------缓冲输出流</p>
+<h3>1)例:</h3>
+<pre><code>FileInputStream fis = new FileInputStream(&quot;photo.rar&quot;); //文件输入流
+BufferedInputStream bis = new BufferedInputStream(fis);  //缓冲输入流
+
+FileOutputStream fos = new FileOutputStream(&quot;photo_副本.rar&quot;); //文件输出流
+BufferedOutputStream bos = new BufferedOutputStream(fos);//缓冲输出流
+
+int d = -1;
+while((d=bis.read()) != -1){
+    bos.write(d);
+}
+System.out.println(&quot;复制完毕&quot;);
+
+bis.close();
+bos.close();
+</code></pre>
+
+<h3>2)缓冲流写出数据的缓冲区问题</h3>
+<pre><code>String str = &quot;科技引领未来&quot;;  //要写入的字符串
+bos.write(str.getBytes());  //写入
+/**
+ * flush 方法会强制将缓冲区中已经缓存的数据一次性写出
+ */
+bos.flush();
+System.out.println(&quot;写出完毕&quot;);
+bos.close();
+</code></pre>
+
+</li>
+</ul>
+<h2>5. 对象流</h2>
+<ul>
+<li>
+<p>将给定对象转换为一组字节后写出</p>
+<pre><code>    将对象转换为字节
+          |
+ 对象 -&gt; oos -&gt; fos -&gt; 文件
+                 |
+            将字节写入文件
+</code></pre>
+
+</li>
+<li>
+<p>将一个对象转换为一组字节写到文件中经历了两个步骤:</p>
+<ul>
+<li>
+<p>1:将一个对象转换为一组字节这个过程称为:对象序列化</p>
+</li>
+<li>
+<p>2:将这组字节写入文件(磁盘中)长久保存这个过程称为持久化</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>1)对象输出流:</h3>
+<ul>
+<li>java.io.ObjectOutputStream; </li>
+<li>将一个对象转换为一组字节写到文件中</li>
+</ul>
+<h4>1.1) 创建对象:</h4>
+<pre><code>    FileOutputStream fos = new FileOutputStream(&quot;zhang.txt&quot;);  //文件输出流
+
+    ObjectOutputStream oos = new ObjectOutputStream(fos);   //对象输出流
+</code></pre>
+
+<h4>1.2)void writeObject(Object obj);----------将对象写入文件</h4>
+<ul>
+<li>若一个类的实例需要被对象输出流序列化,那么该类必须实现可序列化接口:java.io.Serializable;</li>
+<li>
+<p>当一个类实现了可序例化接口,就要定义一个常量:</p>
+<ul>
+<li>版本号(serialVersionUID)</li>
+<li>版本号决定着对象的反序例化是否成功:</li>
+<li>1:反序列化的对象的版本号若与当前类版本号一致,反序列化成功.若反序列化对象的结构与当前类接口有变化,那么可以还原的属性就还原.没有的属性就忽略.</li>
+<li>2:版本号若不一致,则反序列化直接失败</li>
+</ul>
+</li>
+<li>
+<p>被transient修饰的属性,在进行对象序列化时该值会被忽略.以达到对象瘦身的目的</p>
+</li>
+</ul>
+<h3>2)对象输入流:</h3>
+<ul>
+<li>java.io.ObjectInputStream;</li>
+<li>对象输入流,用于进行对象反序列化需要注意的是对象输入流读取的内容必须是通过OjectOutputStream序列化的对象</li>
+</ul>
+<h4>2.1)创建对象:</h4>
+<pre><code>    FileInputStream fis = new FileInputStream(&quot;zhang.txt&quot;);
+
+    ObjectInputStream ois = new ObjectInputStream(fis);
+</code></pre>
+
+<h4>2.2)Object obj =(Object)ois.readObject(); ------读取对象文件</h4>
+<h1>API-day08</h1>
+<h2>1.字符流</h2>
+<ul>
+<li>Reader和Write</li>
+<li>字符流,以字符为单位读写数据.</li>
+<li>字符流只用来读写文本数据.</li>
+<li>字符流大部分都是高级流</li>
+<li>字符流需通过转换流进行转换</li>
+</ul>
+<h3>2.转换流</h3>
+<ul>
+<li>
+<p>java.io.InputStreamReader</p>
+<ul>
+<li>字符输入流</li>
+</ul>
+</li>
+<li>
+<p>java.io.OutputStreamWrite</p>
+<ul>
+<li>字符输出流 </li>
+</ul>
+<p>大部分低级流都是字节流,而字符流基本都是高级流,但是这些字符流通常只处理其他字符流,这就导致它们不能直接连到字节流上,为此可以通过
+	InputStreamReamer,
+	OutputStreamWriter
+在中间进行转换.</p>
+</li>
+</ul>
+<h3>1)字符输出流</h3>
+<h4>1.1)创建对象:</h4>
+<pre><code>    FileOutputStream fos = new FileOutputStream(&quot;osw.txt&quot;);
+
+    //参数可传入指定字符集 且需建立在低级流之上
+    OutputStreamWriter osw = new OutputStreamWriter(fos,&quot;GBK&quot;);
+</code></pre>
+
+<h4>1.2)void write(String str) -------写出字符串</h4>
+<h3>2)字符输入流</h3>
+<h4>2.1)创建对象:</h4>
+<pre><code>FileInputStream fis = new FileInputStream(&quot;osw.txt&quot;);
+
+//参数可传入指定字符集进行读取字符
+InputStreamReader isr = new InputStreamReader(fis,&quot;GBK&quot;);
+</code></pre>
+
+<h4>2.2)int read(char cbuf[])----- 按字符读取</h4>
+<ul>
+<li>
+<p>若传入参数,则按照指定的字符数组长度进行读取</p>
+</li>
+<li>
+<p>若不传入参数,则读取一个字符	</p>
+<pre><code>例:  
+    #按照指字的字符数组长度读取
+    char[] chr = new char[100];
+    int len =isr.read(chr); //实际读到的字符量
+    String str = new String(chr,0,len); //将读到的字符转换成字符串
+    System.out.println(str);
+
+    #每次读取一个字符
+    int d = -1;
+    while((d =isr.read()) != -1){
+        System.out.print((char)d);//将读到的字符输出
+    }
+    isr.close();
+</code></pre>
+
+</li>
+</ul>
+<h2>3.缓冲字符流</h2>
+<h3>1)缓冲字符输出流</h3>
+<ul>
+<li>java.io.PrintWriter</li>
+<li>特点:可以按行写出字符串,并且具有自动行刷新功能</li>
+<li>
+<p>PrintWriter提供了很多种类的构造方法</p>
+<pre><code>  其中有直接对文件写操作的构造方法:
+  PrintWriter(String path)
+  PrintWriter(File file)
+</code></pre>
+
+</li>
+</ul>
+<h4>1.1)创建对象:PrintWriter pw = new PrintWriter(&quot;pw.txt&quot;,&quot;GBK&quot;);</h4>
+<ul>
+<li>单独写(没有建立在其他文件流之上)可以指字字符集</li>
+<li>建立在其他流之上则不能指定字符集,必须通过转换流指定字符集</li>
+<li>
+<p>参数可传入true(代表自动行刷新)</p>
+<p>PrintWriter pw = new PrintWriter(&quot;pw.txt&quot;,true)</p>
+</li>
+</ul>
+<h4>1.2) void println(String str)----------向文件中写出字符串</h4>
+<pre><code>例:向文件中写出字符串
+
+    pw.println(&quot;怎么大风越狠,&quot;);
+    pw.println(&quot;我的心越荡&quot;);
+
+    System.out.println(&quot;写出完毕&quot;);
+    pw.flush();
+    pw.close();
+</code></pre>
+
+<h4>1.3)void flush();------行刷新</h4>
+<h3>2)缓冲字符输入流</h3>
+<ul>
+<li>
+<p>java.io.BufferedReader</p>
+</li>
+<li>
+<p>缓冲字符输入流,可以按行读取字符串 </p>
+</li>
+</ul>
+<h4>2.1)创建对象:</h4>
+<pre><code>    FileInputStream fis = new FileInputStream(&quot;name.java&quot;);
+
+    //转换流 ,可以指字字符集
+    InputStreamReader isr = new InputStreamReader(fis,&quot;GBK);
+
+    //必须建立在转换流和文件流之上
+    BufferedReader br = new BufferedReader(isr);
+</code></pre>
+
+<h4>2.2) String readLine();-------------按行读取字符串</h4>
+<ul>
+<li>
+<p>该方法会使缓冲流读取若干字符,直到读取到换行符为止,然后将换行符之前的所有字符组成一个字符串返回.但是返回的字符串中不含有最后的换行符.若返回值为NULL,则表示本次没有读取到任何内容 (读文件的话就是文件末尾).只有通过该流不能再次读取到内容时返回NULL.</p>
+<pre><code>例:  将当前类的源代码输出到控制台
+String line = null;
+while((line = br.readLine()) != null){
+        System.out.println(line);
+}
+br.close();
+</code></pre>
+
+</li>
+</ul>
+<h2>4.异常</h2>
+<ul>
+<li>
+<p>java异常处理机制中的try_catch</p>
+</li>
+<li>
+<p>try块用来包含可能出错的代码片段</p>
+</li>
+<li>
+<p>catch用来捕获try块中出现的错误并解决</p>
+</li>
+</ul>
+<h3>1)try -- catch------------捕获异常</h3>
+<pre><code>    例:
+    System.out.println(&quot;程序开始了&quot;);
+
+    try{
+        String str = &quot;a&quot;;
+        /*
+         * 出错时,虚拟机会实例化这个错误的实例
+         * 并将程序运行到错误这里的过程设置到该实例中,
+         * 有了完成的错误信息后,虚拟机会将该异常拋出.
+         */
+
+        System.out.println(str.length());
+
+        System.out.println(str.charAt(0));
+
+        System.out.println(Integer.parseInt(str));
+
+        /*
+         *try 中出错代码下面的代码不会被执行
+         */
+        System.out.println(&quot;!!!!!&quot;);
+
+
+    }catch(NullPointerException e){
+        System.out.println(&quot;出现了空指针&quot;);
+
+    }catch(StringIndexOutOfBoundsException e){
+        System.out.println(&quot;下标越界了&quot;);
+
+    }catch(NumberFormatException e){
+        System.out.println(&quot;数字格式异常!&quot;);
+
+        /**
+         * 应当养成一个好习惯,在最后一个catch中
+         * 捕获Exception.避免因为未知异常导致程序中断.
+         * 当多个catch的异常之间有继承关系时,
+         * 子类异常在上,父类异常在下
+         */
+    }catch(Exception e){
+        System.out.println(&quot;出现未知错误!&quot;);
+    }
+    System.out.println(&quot;程序结束了&quot;);
+</code></pre>
+
+<h3>2)finally 块</h3>
+<ul>
+<li>
+<p>finally 块必须定义在异常处理机制的最后.finally块可以保证无论try块中的代码是否出现异常 ,finally块中的代码都会执行. 通常会将诸如释放资源等 操作放在finally中确保执行 (如 :pw.close();流关闭)</p>
+<pre><code>例: 
+System.out.println(&quot;程序开始了&quot;);
+try{
+    String str = &quot;&quot;;
+    System.out.println(str.length());
+    return;
+}catch(Exception e){
+    System.out.println(&quot;出错了&quot;);
+
+}finally{
+    System.out.println(&quot;finally中的代码运行了&quot;);
+}
+
+System.out.println(&quot;程序结束了&quot;);
+</code></pre>
+
+</li>
+</ul>
+<h3>3)异常拋出</h3>
+<pre><code>通常两种情况会导致异常拋出:
+    1:满足语法要求,但是不满足业务逻辑要求时,可以当做一个异常拋出给调用者
+    2:当前代码出现了异常,但是该异常的解决不应在当前代码中处理时可以将其拋出给调用者解决.
+
+当调用一个含有throws异常拋出声明的方法时,编译器要求必须处理该异常否则编译不通过.
+而处理手段有两种:
+  1:使用try-catch 捕获并处理
+  2:继续在当前方法上使用throws将该异常声明继续向外拋出
+
+重写父类含有throws 异常 拋出声明的方法时对throws的重写准则:
+
+三个允许:
+    1.允许不再拋出异常 
+    2.允许拋出部分异常
+    3.允许拋出父类方法拋出异常的子类型异常
+
+两个不允许:
+    1.不允许拋出额外异常 
+    2.不允许拋出父类方法拋出异常的父类型异常 
+</code></pre>
+
+<h3>4)设置异常</h3>
+<ul>
+<li>通常方法中throw 异常 就要在方法上使用throws声明该类异常的拋出.只有RuntimeException及其子类型异常在拋出时无需在方法上使用throws声明.</li>
+<li>
+<p>RuntimeException常识性异常
+	eg:
+	public class Person {
+		private int age;</p>
+<pre><code>    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age)throws IllegalAgeException{
+        if(age&lt;0||age&gt;100){
+            /**
+             * 通常方法中throw 异常 就要在方法上使用throws声明该类异常的拋出.
+             * 只有RuntimeException及其子类型异常在拋出时无需在方法上使用throws声* *明.
+            */
+            throw new IllegalAgeException(&quot;年龄不合法&quot;);
+        }
+        this.age = age;
+    }
+}
+</code></pre>
+
+</li>
+</ul>
+<h3>5)自定义异常</h3>
+<ul>
+<li>
+<p>自定义异常通常用来说明业务逻辑错误</p>
+</li>
+<li>
+<p>创建类(要见名知意),继承 Exception异常,也可以继承Exception的子类异常, 但是不会继承RuntimeException,(常识性异常)</p>
+</li>
+<li>
+<p>重写Exception类中的所有方法</p>
+</li>
+<li>
+<p>异常 都是可序列化的 </p>
+</li>
+</ul>
+<h1>API-day09</h1>
+<h2>1.线程</h2>
+<ul>
+<li>
+<p>多线程允许多段代码&quot;同时&quot;运行.</p>
+</li>
+<li>
+<p>多线程运行代码实际上是并发运行的,不是真正意义上的同时运行.</p>
+</li>
+<li>
+<p>线程有两种创建方式:</p>
+<ul>
+<li>
+<p>方式一: 创建类, 继承Thread并重写run方法.</p>
+<pre><code>方式一创建线程的方式存在两个设计上的不足:
+1:继承冲突,由于java是单继承的,这就导致一个类如果希望是线程,
+同时又需要扩展另一个类的功能时,由于不能同时继承这两个类,导致继承冲突.
+
+2:继承线程需要重写run方法来定义线程任务,这就导致线程与任务定义在一起有一个强耦合关系,  不利于线程重用.
+
+eg:
+class MyThread1 extends Thread{
+        /**
+         * run()中是要执行的任务 
+         */
+    public void run(){
+        for(int i = 0; i &lt; 1000; i++){
+        System.out.println(&quot;你是谁啊?&quot;);
+        }
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>方式二: 创建类, 实现Runnable 接口 重写 run方法 单独定义线程任务</p>
+<pre><code>方式二创建线程的方式解决了方式一出现的两个不足
+
+eg:
+
+class MyRunnable1 implements Runnable{
+        /**
+         * run()中是要执行的任务 
+         */
+    public void run(){
+        for(int i = 0; i &lt; 1000; i++){
+        System.out.println(&quot;你是谁呀&quot;);
+        }
+    }
+}
+</code></pre>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3>1.01)创建对象:</h3>
+<ul>
+<li>
+<p>方式一:</p>
+<pre><code> Thread th1 = new MyThread1();
+</code></pre>
+
+</li>
+<li>
+<p>方式二:</p>
+<pre><code> Runnable r1 = new MyRunnable1();
+
+ Thread th1 = new Thread(r1); 
+</code></pre>
+
+</li>
+</ul>
+<h3>1.02)void start();---------启动线程</h3>
+<ul>
+<li>启动线程要执行start方法.该方法的作用是将当前线程纳入到线程调度.</li>
+<li>
+<p>该方法调用完毕后,线程会很快被分配到cpu时间片开始运行,一旦开始运行会自动执行该线程的run方法来运行线程任务</p>
+<pre><code>eg:
+Runnable r1 = new MyRunnable1();
+
+Thread th1 = new Thread(r1);
+
+//启动线程
+th1.start();
+</code></pre>
+
+</li>
+</ul>
+<h3>1.03)匿名内部类方式创建线程:</h3>
+<pre><code>    eg:
+    匿名内部类方式创建方式一:
+
+    Thread t1 = new Thread(){
+        public void run(){
+            for(int i = 0; i &lt; 1000; i++){
+                System.out.println(&quot;你是谁&quot;);
+            }
+        }
+    };
+
+
+    匿名内部类方式创建方式二:
+    Runnable r2 = new Runnable(){
+        public void run(){
+            for(int i = 0; i &lt; 1000; i++){
+                System.out.println(&quot;我是查水表的&quot;);
+            }
+        }
+    };
+    Thread t2 = new Thread(r2);
+
+    //启动线程      
+    t1.start();//方式一创建的
+
+    t2.start();//方式二创建的
+</code></pre>
+
+<h3>1.04)static Thread currentThread(); -------获取运行当前方法的线程</h3>
+<ul>
+<li>
+<p>静态方法</p>
+</li>
+<li>
+<p>JVM启动后会创建一个线程来运行main方法</p>
+<pre><code>eg:获取运行main方法的线程
+
+Thread main = Thread.currentThread();
+
+System.out.println(&quot;运行main方法的线程是:&quot;+main);
+</code></pre>
+
+</li>
+</ul>
+<h3>1.05)String getName();-------返回该线程的名称</h3>
+<h3>1.06)long getId();-----------返回该线程的ID (标识符)</h3>
+<h3>1.07)int getPriority();----------返回该线程的优先级</h3>
+<h3>1.08)boolean isAlive();----------获取线程是否属于活动状态</h3>
+<h3>1.09)boolean isDaemon();----------获取线程是否为守护线程(后台线程)</h3>
+<h3>1.10)boolean isInterrupted()--------测试线程是否已中断</h3>
+<h3>1.11)static void sleep(long millis);---------进入阻塞状态</h3>
+<ul>
+<li>静态方法</li>
+<li>该方法会导致运行当前方法的线程进入阻塞状态</li>
+<li>指定毫秒值,当超时后,线程会自动回到Runnable状态,等到再次分配CPU时间并发运行</li>
+</ul>
+<h2>2.线程优先级</h2>
+<ul>
+<li>
+<p>线程对于线程调度的工作是不可控制的.线程只能被动的被分配CPU时间,不能主动获取</p>
+</li>
+<li>
+<p>改变线程优先级可以最大程度改善线程获取CPU的几率</p>
+</li>
+<li>
+<p>理论上线程优先级越高的线程获取CPU时间片的次数越多.</p>
+</li>
+</ul>
+<h3>2.1)void setPriority(int newPriority)--------设置线程优先级</h3>
+<ul>
+<li>线程的优先级分为10级,值分别为1-10,其中1最低,10最高</li>
+<li>
+线程提供了3个常量来表示最低,最高以及默认优先级
+<ul>
+<li>Thread.MIN_PRIORITY,----最低值</li>
+<li>Thread.MAX_PRIORITY, ----最高值</li>
+<li>Thread.NORM_PRIORITY ----默认值</li>
+</ul>
+</li>
+</ul>
+<h2>3.守护进程(后台线程)</h2>
+<ul>
+<li>
+<p>守护线程又称为&quot;后台线程&quot;</p>
+</li>
+<li>
+<p>默认创建出来的线程都是前台线程,后台线程需要进行单独设置.</p>
+</li>
+<li>
+<p>前台与后台线程使用没有区别,区别在于结束时机上,当一个进程结束时,进程中的所有后台线程会被强制中断. 而进程的结束时机是当一个进程中的所有前台线程都结束时.</p>
+</li>
+</ul>
+<h3>3.1) void setDaemon(boolean on);------------设置当前线程为后台线程</h3>
+<ul>
+<li>
+<p>参数传入true, 是设置为后台线程</p>
+<pre><code>eg：
+
+有两个线程rose、jack。讲jack设置为后台线程：
+rose.start();
+jack.setDaemon(true);//设置为后台线程,必须在start之前设置
+jack.start();
+</code></pre>
+
+</li>
+</ul>
+<h2>4.同步运行线程</h2>
+<ul>
+<li>
+<p>线程是异步执行代码的</p>
+<ul>
+<li>
+<p>异步运行:多段代码可以同时运行,各干各的.</p>
+</li>
+<li>
+<p>同步运行:运行代码有先后顺序的一句一执行</p>
+</li>
+</ul>
+</li>
+<li>
+<p>可以使用线程的join()方法实现个线程出现同步运行的效果.让多个线程中的代码有先后顺序的执行.</p>
+</li>
+</ul>
+<h3>4.1)void join()--------------设置线程为同步运行</h3>
+<ul>
+<li>该方法设置在需要同步的线程内, 当另一线程执行完再执行此线程</li>
+<li>
+<p>调用join()------方法需要处理异常</p>
+<pre><code>eg:
+public class Thread_join {
+
+    //图片是否下载完毕
+    private static boolean isFinish = false;
+
+    public static void main(String[] args) {
+
+        Thread download = new Thread(){   //下载线程
+
+            public void run(){
+                System.out.println(&quot;开始下载图片...&quot;);
+                for(int i = 0 ; i&lt;100; i+=2){
+                    System.out.println(&quot;下载中:&quot;+i+&quot;%&quot;);
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                    }
+                }
+                System.out.println(&quot;图片下载完毕&quot;);
+                isFinish = true;
+            }
+        };
+
+        Thread show = new Thread(){     //显示线程
+            public void run(){
+                System.out.println(&quot;show:开始显示图片......&quot;);
+
+                /**
+                * 等待下载线程先将图片下载完毕
+                * 当show线程执行到download.join()方法时,
+                * show线程进入阻塞状态,直到download线程将任务执行完毕(download线程结束)
+                * 时才会解除阻塞继续向下运行代码
+                */
+                try {
+                    download.join();  
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!isFinish){
+                    throw new RuntimeException(&quot;图片没有下载完毕&quot;);
+                }
+                System.out.println(&quot;图片显示完毕&quot;);
+            }
+        };
+
+        download.start();
+        show.start();
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>补充:当一个方法的局部内部类中想引用这个方法的其他局部变量,那么该变量必须是final的.这原则jvm的
+内存分配问题. JDK8由于重构了JVM 内存分配,解决了这个问题,就不再这样要求了</p>
+</li>
+</ul>
+<h1>API-day10</h1>
+<h2>1.多线程并发安全问题</h2>
+<ul>
+<li>当多个线程并发访问同一资源时,由于线程切换不确定导致的代码执行顺序混乱从而出现很多问题. 严重时可能导致系统瘫痪.</li>
+</ul>
+<h3>1)synchronized----- 同步方法修饰</h3>
+<ul>
+<li>
+<p>两个线程访问同一方法时在方法上修饰</p>
+</li>
+<li>
+<p>当一个方法使用synchronized 修饰后,该方法称为&quot;同步方法, 多个线程不能同时在方法内部执行,必须按照顺序一个一个的执行方法.这样可以避免多个线程&quot;抢着&quot;执行同一个方法出现的执行逻辑混乱带来的一系列问题</p>
+</li>
+<li>
+<p>在方法上使用synchronized,那么同步监视器对象就是当前方法所属对象,即:this</p>
+<pre><code>class Table{
+    private int beans = 20;
+
+    //使用synchronized修饰方法
+    public synchronized int getBeans(){
+        if(beans == 0){
+            throw new RuntimeException(&quot;没有豆子了)&quot;);
+        }
+        Thread.yield();
+        return beans--;
+    }
+}
+</code></pre>
+
+<p>eg:银行卡取款</p>
+</li>
+<li>
+<p>静态方法上使用synchroize修饰后,该方法一定具有同步效果</p>
+</li>
+</ul>
+<h3>2)synchronized(){ }--------同步块</h3>
+<ul>
+<li>
+<p>两个线程访问同一个方法时,在方法内使用</p>
+</li>
+<li>
+<p>同步块有效的缩小同步范围可以在保证安全的前提下提高代码并发执行的效率</p>
+</li>
+<li>
+<p>用法:</p>
+<pre><code> synchronized(同步监视器){
+
+  需要同步执行的代码片段
+
+ }
+
+
+//synchronized(new Object()){ } //  不可以
+//synchronized(Thread t){  }//  不可以
+
+synchronized(this){ }可以
+
+
+//同步监视器:
+    即上锁对象,可以是java中的任意对象,但是必须保证需要同步执行代码的多个线程看到的该对象必须是&quot;同一个对象&quot;才可以. 通常可以使用&quot;this&quot;.       
+</code></pre>
+
+</li>
+</ul>
+<h3>3)互斥锁</h3>
+<ul>
+<li>
+<p>使用synchronized 修饰的是多段代码,但是这些同步块的同步监视器对象是同一个的时候,这些代码间就具有了互斥效果,同一时间多个线程不能同时在这些方法内部执行.</p>
+<pre><code>class Foo{
+    public synchronized void methodA(){
+
+    }
+
+    public synchronized  void methodB(){
+
+    }
+}
+
+以上方法在同一类中,且都用synchronized修饰,具有互斥效果
+</code></pre>
+
+</li>
+</ul>
+<h3>4)线程池</h3>
+<ul>
+<li>
+<p>线程池的主要功能是:</p>
+<ul>
+<li>
+<p>1:控制线程数量</p>
+</li>
+<li>
+<p>2:重用线程</p>
+</li>
+</ul>
+<p>当并发任务量大时,或者有频繁创建线程执行任务的操作时,就应当使用线程池来调度线程.</p>
+</li>
+</ul>
+<h4>4.1)创建对象:ExecutorService threadPool = Executors.newFixedThreadPool(n);</h4>
+<ul>
+<li>构造方法传入线程数量</li>
+</ul>
+<h4>4.2)void execute(Runnable command);----------将任务指派给线程池</h4>
+<h4>4.3)void shutdown();---------停止线程池</h4>
+<ul>
+<li>shutdownNow(); 强制停止线程池</li>
+</ul>
+<h3>5)线程安全的API</h3>
+<ul>
+<li>
+<p>StringBuilder 不是线程安全的,而StringBuffer是线程安全的,所以在多线程下操作同一个字符串内容时应当使用StringBuffer,因为该类中的操作字符串相关方法都是同步方法(使用synchronized修饰)</p>
+</li>
+<li>
+<p>List集合常用的实现类,ArrayList, LinkedList ,以及Set 集合的实现类HashSet(HashSet不允许重复元素)Map集合的实现类:HashMap上述数据结构都不是线程安全的,但是可以通过集合的工具类Collections的相关办法转换为一个线程安全的</p>
+</li>
+</ul>
+<h4>5.1)转换线程安全方法</h4>
+<ul>
+<li>
+<p>list = Collections.synchronizedList(List list);---将集合转换为线程安全的</p>
+</li>
+<li>
+<p>set = Collections.synchronizedSet(Set s);------将HashSet集合转换为线程安全的</p>
+</li>
+<li>
+<p>map = Collections.synchronizedMap(Map map);---------将HashMap集合转换为线程安全的</p>
+</li>
+<li>
+<p>所有集合构造方法都可以传入一个集合对象,作为当前集合的元素</p>
+<p>例:Set&lt;String&gt; set = new HashSet&lt;String&gt;(list)</p>
+</li>
+<li>
+<p>线程安全的集合的增删元素等操作是同步的,而且他们之间也是互斥的.多线程情况下操作是没有问题的.
+ 但是它们不与迭代器遍历该集合的操作互斥所以若有这样的操作,需要自行维护互斥关系 因为迭代器遍历集合的过程中不允许使用集合相关方法增删元素,否则会拋出异常 </p>
+</li>
+</ul>
+<h1>API-day11</h1>
+<h2>1.TCP通讯(客户端)</h2>
+<ul>
+<li>
+<p>java.net.Socket   套接字</p>
+</li>
+<li>
+<p>Socket 封装了TCP通讯协议,使用它可以基于TCP协议与远端计算机通讯</p>
+</li>
+</ul>
+<h3>1.1)创建对象:Socket socket = new Socket(String host, int port);</h3>
+<ul>
+<li>
+<p>例:Socket socket = new Socket(&quot;localhost&quot;,8088);</p>
+</li>
+<li>
+<p>实例化Socket 时,构造方法要求传入两个参数:</p>
+<p>1:String ,指定服务端的ip地址</p>
+<p>2:int,指定服务端打开的服务端口号</p>
+</li>
+</ul>
+<p>通过ip地址可以找到服务端 所在计算机, 通过端口号可以找到服务器上运行的服务端应用程序</p>
+<pre><code>  127.0.0.1 表示自己
+ &quot;localhost&quot;,也表示自己
+</code></pre>
+
+<h3>1.2)OutputStream getOutputStream();----获取一个输出流</h3>
+<ul>
+<li>
+<p>Socket提供了方法OutputStream getOutputStream() 该方法可以获取一个输出流,通过该输出流写出的数据会发送给远端,这里远端就是服务端</p>
+<pre><code>OutputStream out = socket.getOutputStream();//获取输出流
+
+OutputStreamWriter osw = new OutputStreamWriter(out,&quot;utf-8&quot;);
+
+PrintWriter pw = new PrintWriter(osw,true);   //true代表行刷新
+</code></pre>
+
+</li>
+</ul>
+<h2>2.TCP通讯 (服务端)</h2>
+<ul>
+<li>java.net.ServerSocket</li>
+<li>运行在服务端 的Socket </li>
+<li>
+<p>ServerSocket有两个主要作用:</p>
+<p>1.向操作系统申请端 口,客户端就是通过这个端口与服务端应用程序建立连接的.</p>
+<p>2.监听服务端口,一旦客户端Socket通过端口连接,这里就会感知到并自动创建一个Socket与客户端建立连接</p>
+</li>
+</ul>
+<h3>2.1)创建对象:ServerSocket server = new ServerSocket(int port);</h3>
+<ul>
+<li>
+<p>参数传入端口名称</p>
+<pre><code>ServerSocket server = new ServerSocket(8088)
+</code></pre>
+
+</li>
+</ul>
+<h3>2.2)Socket accept(); ---------监听端口</h3>
+<ul>
+<li>
+<p>ServerSocket提供了方法: Socket accept();该方法是一个阻塞方法,调用后会一直监听端口,直到一个客户端通过该端口建立连接,这是accept会返回一个Socket,通过这个Socket 就可以与客户端 通讯了</p>
+<p>ServerSocket server = new ServerSocket(8088)//申请端口</p>
+<p>Socket socket = server.accept();  //监听端口,返回一个Socket</p>
+</li>
+</ul>
+<h3>2.3)InetAddress getInetAddress();------通过Socket获取远端计算机地址信息(InetAddress)</h3>
+<ul>
+<li>InetAddress类 是对IP地址信息的封装,它的实例对象包含以数字形式保存的IP地址</li>
+<li>
+<p>通过Socket获取远端计算机地址信息(InetAddress),对于服务端这边而言,远端指的就是客户端</p>
+<p>ServerSocket server = new ServerSocket(8088)//申请端口</p>
+<p>Socket socket = server.accept();  //监听端口,返回一个Socket</p>
+<p>InetAddress address = socket.getInetAddress();//根据Socket获取远端计算机地址信息</p>
+</li>
+</ul>
+<h3>2.4)String getHostAddress()-----通过InetAddress获取IP地址以字符串形式返回</h3>
+<pre><code>ServerSocket server = new ServerSocket(8088) //申请端口
+
+Socket socket = server.accept();  //监听端口,返回一个Socket
+
+InetAddress address = socket.getInetAddress();//根据Socket获取远端计算机地址信息InetAddress
+
+String host = address.getHostAddress();//根据InetAddress获取IP地址
+</code></pre>
+
+<h3>2.5)InputStream getInputStream();------获取一个输入流</h3>
+<pre><code>    InputStream in = socket.getInputStream();  //根据Socket获取输入流
+
+    InputStreamReader isr = new InputStreamReader(in,&quot;UTF-8&quot;);  
+
+    BufferedReader br = new BufferedReader(isr);
+</code></pre>
+
+<ul>
+<li>使用br.readLine()读取客户端发送过来的一行字符串时,由于客户端所在系统不同,那么当客户端断开连接时这里执行的结果也不同.</li>
+<li>
+<p>当linux的客户端断开连接时:br.readLine方法会返回null</p>
+<pre><code>String message = null;  //解决了Linux客户端断开连接时出现的问题
+while((message = br.readLine())!=null){
+pw.println(&quot;客户端说:&quot;+message);
+}
+</code></pre>
+
+</li>
+<li>
+<p>当windows的客户端断开连接时: br.readLine方法会直接拋出异常</p>
+<pre><code>    try{
+
+    }catch(Exception e){
+
+    }finally{
+
+            // 将针对该客户端的Socket关闭以释放资源
+            try {
+                socket.close();    //关闭Socket连接
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+</code></pre>
+
+</li>
+</ul>
+<h1>API-day12</h1>
+<h2>1.解析XML文档</h2>
+<ul>
+<li>
+解析XML文档大致流程
+<ul>
+<li>1：创建SAXReader</li>
+<li>2:使用SAXReader读取XML文档并返回一个Document对象.这一步也是DOM解析耗时资源的地方</li>
+<li>3:通过Document对象获取根元素</li>
+<li>4:通过根元素按照SML文档结构逐级获取子元素,以达到遍历XML文档数据的目的</li>
+</ul>
+</li>
+</ul>
+<h3>1.01)创建对象:SAXReader reader = new SAXReader();</h3>
+<h3>1.02)Document read(File file);--------使用SAXReader获取一个Document对象</h3>
+<pre><code>SAXReader reader = new SAXReader();
+Document doc = reader.read(new File(&quot;emplist.xml&quot;));//获取Document对象
+</code></pre>
+
+<h3>1.03)Element getRootElement();-----使用Document获取一个根元素</h3>
+<ul>
+<li>
+<p>Element的每一个实例用于表示一个SML文档中的一个元素(一对标签)</p>
+</li>
+<li>
+<p>Element提供了用于获取其表示的元素相关信息的方法.(方法见下一目录)</p>
+<p>SAXReader reader = new SAXReader();</p>
+<p>Document doc = reader.read(new File(&quot;emplist.xml&quot;));</p>
+<p>Element element = doc.getRootElement();  //使用document获取根元素 </p>
+</li>
+</ul>
+<h3>1.04)String getName();--------获取当前元素的名字(标签名)</h3>
+<h3>1.05)Element element(String name);--------- 获取当前元素中指定名字的子元素</h3>
+<pre><code>SAXReader reader = new SAXReader();
+
+Document doc = reader.read(new File(&quot;emplist.xml&quot;));
+
+Element ele = doc.getRootElement();
+
+Element nameEle = ele.element(&quot;name&quot;);   //获取指字名字的子元素 
+</code></pre>
+
+<h3>1.06)List elements();----------获取当前元素中所有子元素</h3>
+<h3>1.07)List elements(String name);------ 获取当前元素中所有同名子元素</h3>
+<h3>1.08)String getText();------ 获取当前元素中间的文本</h3>
+<h3>1.09)String elementText(String name)------ 获取当前标签下指定名字的子标签中间的文本</h3>
+<h3>1.10)Attribute attribute(String name)-----获取当前标签中指定名字的属性</h3>
+<ul>
+<li>
+<p>Attribute的每一个实例用于表示一个元素中的一个属性</p>
+<p>Element element = doc.getRootElement();</p>
+<p>Attribute attEle = empEle.attribute(&quot;id&quot;);</p>
+</li>
+</ul>
+<h3>1.11)String getName();----根据Attribute获取当前属性的名字</h3>
+<h3>1.12)String getValue();-----根据Attribute获取属性的值</h3>
+<h2>2.写出XML文档</h2>
+<ul>
+<li>
+写出XML文档的大致步骤
+<ul>
+<li>1:创建一个Document对象,表示一个空白文档</li>
+<li>2:向Document 对象中添加根元素</li>
+<li>3:向根元素中逐级添加子元素,已达到要生成的XML文档的结构内容 </li>
+<li>4:创建XmlWriter</li>
+<li>5:将Document对象通过XmlWriter写出成XML文档</li>
+<li>6:关闭 XmlWriter</li>
+</ul>
+</li>
+</ul>
+<h3>2.1)创建Document对象:Document doc = DocumentHelper.createDocument();</h3>
+<ul>
+<li>使用方法DocumentHelper.createDocument();可以创建一个Document实例</li>
+</ul>
+<h3>2.2)Element addElement(String name);-----添加根元素方法 ###</h3>
+<ul>
+<li>
+<p>添加根元素后,返回一个Element实例</p>
+</li>
+<li>
+<p>Document提供了添加根元素的方法Element addElement(String name)向当前文档中添加给定名字的根元素,并将该元素以一个Element的实例返回,以便于对该根元素继续追加子元素等操作.</p>
+</li>
+<li>
+<p>需要注意,该方法只能调用一次,因为一个文档中只能有一个根元素</p>
+<p>例:Document doc = DocumentHelper.createDocument();</p>
+<p>Element root = doc.addElement(&quot;list&quot;)</p>
+</li>
+</ul>
+<h3>2.3)Element addElement(String name)-------标签中添加指定名字的子标签</h3>
+<ul>
+<li>向当前标签中添加指定名字的子标签并将其返回,以便于继续添加标签</li>
+</ul>
+<h3>2.4)Element addText(String text) ------向当前标签中添加文本信息</h3>
+<ul>
+<li>向当前标签中添加文本信息,返回值还是当前标签,这样做的目的也是便于对当前标签继续操作(老程序员偷懒必备)</li>
+</ul>
+<h3>2.5)Element addArribute(String name,String value)------向当前标签中添加属性,</h3>
+<ul>
+<li>向当前标签中添加属性,返回值还是当前标签</li>
+</ul>
+<h3>2.6)创建输出对象:XMLWriter writer = new XMLWriter(OutputStream out, OutputFormat format);</h3>
+<pre><code>FileOutputStream fos = new FileOutputStream(&quot;myemp.xml&quot;);
+
+//Outputformat提供了方法,创建一个漂亮的输出
+//OutputFormat.createPrettyPrint();
+XMLWriter writer = new XMLWriter(fos,OutputFormat.createPrettyPrint());
+</code></pre>
+
+<h3>2.7)void write(Document doc);--------写出文件 ###</h3>
+<pre><code>Document doc = DocumentHelper.createDocument();
+
+/*
+    添加标签过程
+ */
+FileOutputStream fos = new FileOutputStream(&quot;myemp.xml&quot;);
+
+XMLWriter writer = new XMLWriter(fos,OutputFormat.createPrettyPrint());
+
+writer.write(doc);
+</code></pre>
+
+<h3>2.8)void close()---------关闭XMLWriter</h3>
+<h2>3.XPath</h2>
+<ul>
+<li>
+XPath是一门在XML文档中查找信息的语言.XPath可用来在XML文档中对元素和属性进行遍历
+<ul>
+<li>/作为路径内部的分隔符.</li>
+<li>/bookstore: 选取根节点bookstore, 这是栬对路径写法.</li>
+<li>bookstore/book:选取所有属于bookstore的子元素的book元素,这是相对路径写法.</li>
+<li>//book:选择所有book子元素 ,而不管它们在文档中的位置.</li>
+<li>bookstore//book:选择所有属于bookstore元素的后代的book元素 ,而不管它们位于bookstore之下的什么位置.</li>
+<li>//@lang:选择所有名为lang的属性</li>
+</ul>
+</li>
+<li>
+<p>谓语条件</p>
+<ul>
+<li>就是对路径表达式的附加条件.</li>
+<li>所有的条件,都写在方括号 &quot;[ ]&quot; 中,表示对节点进行进一步的筛选</li>
+<li>/bookstore/book[1]:表示选择bookstore的第一个book子元素</li>
+<li>/bookstore/book[last()]:表示选择bookstore的最后一个book子元素 </li>
+<li>//title[@lang = 'eng']:表示选择所有lang属性的值等于&quot;eng&quot;的title节点</li>
+<li>/bookstore/book[price]: 表示选择bookstore的book子元素 ,且被选中的book子元素 必须带有price子元素 </li>
+</ul>
+</li>
+<li>
+<p>通配符</p>
+<ul>
+<li>&quot;*&quot; 表示匹配任何元素节点</li>
+<li>&quot;@&quot; 表示匹配任何属性值</li>
+<li>node():表示匹配任何类型的节点</li>
+</ul>
+</li>
+</ul>
+<h3>3.1)List selectNodes(String xpath);------检索元素和属性</h3>
+<ul>
+<li>
+<p>传入xpath路径,获取相应的信息,返回一个集合</p>
+<p>SAXReader reader = new SAXReader();
+	Document doc = reader.read(
+			new FileInputStream(&quot;myemp.xml&quot;)
+		);</p>
+<p>//路径表达式
+String xpath = &quot;/list/emp[salary&gt;3000 and gender='男']/name&quot;;</p>
+<p>//检查文件,获取相应信息返回集合
+List<Element> list = doc.selectNodes(xpath);			
+for(Element e : list){
+	System.out.println(e.getText());
+}</p>
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

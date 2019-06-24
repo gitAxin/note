@@ -1,0 +1,324 @@
+Date（java.util.Date）
+Date内部维护一个long值，该值表示自1970年元旦到该对象表示的时间点之间所经过的毫秒值。由于Date存在时区，千年虫问题，所以在jdk1.1发布时大部分操作时间的方法全部被标注为过时方法，不再建议使用。现在Date仅用于表示一个具体的时间点。Date的构造方法中可以传入一个毫秒值。所创建出来的对象是当前毫秒值的时间。
+	Date now = new Date();//默认创建出来表示当前系统时间
+Date重写了toString显示日期的格式对非英语地区不十分友好、
+1.	Date的方法
+	(1).long getTime()     获取当前Date内部维护的long值即:1970年元旦到当前对象表示的时间之间所经过的毫秒（当前系统的时间）
+	Eg：long time = now.getTime();
+	(2). void setTime(long time)    将给定的long值设置到当前Date对象中使其表示这个时间
+	Eg：now.setTime(time);
+2.	SimpleDateFormat (java.text.SimpleDateFormat)
+该类可以按照一个给定的日期格式字符串将Date与String之间相互转换
+在构造方法中传入指定的日期格式如下所示：
+SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+	(1).DateàString
+	String format(Date date)  将给定的Date按照指定的日期格式转换为字符串
+	Eg：String str = sdf.format(now);
+	(2).StringàDate
+	Date parse(String str) 将给定的字符串按照指定的日期格式解析为Date，使其表示该日期  
+	Eg:Date date = sdf.parse(str);
+Calender（java.util.Calendar）
+日历类，是一个抽象类，规定了操作时间的相关方法Calendar有一个静态方法可以根据所在地区获取相应的实现类。
+1.	calender的方法
+	(1). static Calendar getInstance()    该静态方法会根据系统所在地区获取一个适用的实现类，大部分是阳历类。并且默认表示当前系统时间。
+	Eg: Calendar calendar = Calendar.getInstance();
+	(2). int get(int field)   获取指定时间分量所对应的值的方法(参数为时间分量，无需记住具体取值，通常使用Calendar提供的常量表示。)
+	DATE 月中的天 与DAY_OF_MONTH一致
+	DAY_OF_MONTH   月中的天(几号)
+	DAY_OF_WEEK   星期几（注意从周日开始）
+	DAY_OF_YEAR   年中的天
+	HOUR_OF_DAY   时
+	MINUTE   分
+	SECOND   秒
+	Eg: int year = calendar.get(Calendar.YEAR);//获取年
+	     int month = calendar.get(Calendar.MONTH)+1;//月从0开始，0表示1月
+	(3). int  getActualMaximum(int field)   获取给定时间分量所允许的最大值
+	Eg: int days = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
+	(4). void set(int filed,int value)  针对给定的时间分量设置指定的值(超范围后会进位)
+	Eg: calendar.set(Calendar.YEAR, 2008); //设置年
+	 (5). void add(int field,int value) 计算日期的方法,对指定时间分量加上给定的值，若给定的值是负数，则是减去。
+	Eg: calendar.add(Calendar.MONTH, 3); //加上3个月
+	(6). Calendar à Date
+	Date getTime()     该方法可以返回一个Date类型实例，该实例表示的日期就是当前Calendar所表示的日期
+	Eg: Date date = calendar.getTime();
+	(7). Date à Calenar
+	void setTime(Date date)   该方法可是使当前Calendar表示给定的Date所表示的日期
+	Eg: calendar.setTime(date);
+
+Collection(是所有集合分父接口)
+集合存放的是元素的引用
+常用的子接口：List可重复集，并且有序。Set不可重复集，并且无序。（重复与否指的是集合内部的元素，而元素是否重复取决与元素间equals比较的结果。）
+Collection c =new ArrayList();
+常用方法：     int size()   集合中元素的个数（c.size();）
+		boolean isEmpty()   判断集合是否没有元素(c.isEmpty();)
+		void clear()   清空集合(c.clear();)
+1.添加元素
+	(1). boolean add(E e) 添加一个元素，参数中放入所添加元素
+	eg :  c.add(“java”)
+	(2).boolean  addAll(Collection c)  添加多个元素，参数中放入所添加的集合,将给定集合中的所有元素添加到当前集合中，方法调用完毕后当前集合元素发生了变化返回true
+	eg: c.addAll(c)  
+2.移除元素
+	(1).boolean  remove(E e) 移除一个元素，参数中放入所要移除元素
+	从集合中删除给定元素，将给定元素与集合现有元素顺序进行equals比较，并删除第一个与之比较为true的元素，若成功删除元素则返回true
+	eg:c.remove(“java”)    
+	(2).c.removeAll(...) 移除多个元素，参数中放入所移除的集合
+3. 判断当前集合是否包含元素
+	(1). boolean contains(E e): 判断当前集合是否包含给定元素
+	Eg：c.contains(p);
+	(2).boolean  containsAll(Collection c)：判断当前集合是否包含给定集合
+	Eg：c.containsAll(c2)   ?   c集合是否包含c2
+4.迭代器(问、取、[删])：java.util.Iterator
+	用于遍历集合元素，遵循问取删的步骤。其中删除元素操作不是必要操作的。
+	问：boolean hasNext()  判断当前集合是否有元素可以取出
+	取：E next()           取出下一个元素
+	删：迭代器的remove     从集合中删除一个元素
+	Iterator<String> it = c.iterator();
+		while(it.hasNext()){  //问集合中是否有元素
+			String str = (String)it.next();  //从集合中取出元素
+			System.out.println(str);
+		}
+(迭代器遍历集合时，不要通过集合的方法修改元素的数量否则抛出异常)
+5.增强for循环：JDK1.5之后推出用来遍历集合或数组(底层实际上是迭代器)
+	eg：for(String str:c){  //  “：” 前声明接收类型，“：”后放集合或数组
+		System.out.println(str)
+	    }
+6.泛型：并非虚拟机认可，而是编译器认可，泛型的原型就是Object，所以<T>的地方会被编译成Object，编译器在检查使用泛型的地方时做如下操作：
+(1).在给泛型赋值时：检查实际的值是否满足要求
+(2).获取一个泛型的值时：会自动添加类型转换的代码
+
+List
+	List集合时可重复集，并且有序，特点是通过下标操作元素
+（1）ArrayList:数组实现，查询性能好
+（2）LinkedList:链表实现，增删性能好，尤其是首位增删
+
+1. List的基本方法
+(1).获取制定位置的元素 ，返回当前位置元素       E  get(int  index)
+(2)将元素设置到指定位置，并返回原元素          E  set (int  index, E  e)
+(3).重载的add方法：（指定位置插入元素）	void  add(int  index, E  e)
+(4).重载的remove方法：（指定位置删除元素）     E   remove(int  indes)
+(5).截取集合：List<E>  sublist(int  fromIndex, int  toIndex)  --> (包头不含尾)
+		eg：List<Integer> subList = list.subList(3, 8);
+		（若只写一个参数，则一直截取到最后;对子集的操作，当前集合也会变化）
+2.集合转数组
+（Collection提供了方法:toArray）
+eg: String[] array = c.toArray(new String[c.size()]);
+3.数组转集合
+（数组的工具类Arrays的静态方法asList；只能将数组转换为List集合。）
+eg: List<String> list = Arrays.asList(array);
+对于数组转换后的集合进行修改时，相当于对之前数组相应的元素进行修改。所以想修改时，可以自行实例化一个集合，在构造方法中放入当前集合。
+eg： List<String> list1 = new ArrayList<String>(list);
+4.集合的排序（集合工具类Collections的静态方法sort）
+可以对List集合进行自然排序(从小到大)
+eg:Collections. sort(list);
+5.面试题
+Collections与Collection的区别？
+Queue（队列）java.util.Queue（LinkedList实现了Queue接口）
+队列是常用的数据结构，从一端添加元素，从另一端取出元素，遵循先进先出原则。
+1.Queue的方法
+(1).boolean offer(E  e)  入队操作，向队列末尾追加新元素
+(2). E  poll()		获取队首元素，获取后该元素即从队列中被移除。
+(3). E  peek()		引用队首元素，获取后但不从队列中删除
+
+2.Deque(双端队列)Queue的子接口  java.util.Deque（LinkedList实现了Deque接口）
+双端队列，两端都可以进出队的队列，是Queue的子接口。Deque接口规定了两端进出队的方法。Deque接口规定了两端进出队的方法。当仅调用从一端进出队的方法时，就形成了栈的结构特点
+在Queue的基础上增加的方法
+(1). boolean offerLast(E e)   入队操作，向队列末尾追加新元素
+(2). boolean offerFirst(E e)   入队操作，向队列首追加新元素
+(3).E  pollFirst()		获取队首元素，获取后该元素即从队列中被移除。
+(4).E  pollLast()		获取末尾元素，获取后该元素即从队列中被移除。
+
+Map (查找表)  java.util.Map
+Map以key-value对的形式存储元-nteger> map = new HashMap<String,Integer>();
+Map需要指定两个泛型，分别指定key与 value的类型
+Map要求key不允许重复(equals比较)
+1.Map的基本方法
+(1).V put(K k,V v)  将给定的key-value对存入到Map中， 若key在map中已经存在了，则是替换value操作，返回至则为被替换的value 若key不存在，则返回值为NULL
+Eg：map.put("语文", 99);
+(2). V get(K  k)    根据给定的key获取对应的value,若给定的key不存在，则返回值为null
+Eg: map.get("数学");
+(3). boolean containsKey(Object key)   判断Map是否包含给定元素
+Eg:boolean ck = map.containsKey("语文");
+(4). V remove(K k) 根据给定的key将对应的key-value对,从Map中删除，返回值为该key对应的value
+2.遍历Map
+(1).遍历所有的key
+Set<K> keySet()   将当前Map中所有的key存入一个Set集合后返回。遍历该集合就等于遍历了Map中所有的key
+Eg：Set<String> keySet = map.keySet();
+		for(String key : keySet){
+			System.out.println("key:"+key);
+		}
+(2).遍历键值对（Map中每一组键值对由Map的内部类Entry的一个实例保存。）
+Set<Entry> entrySet()  该方法会将当前Map中每组键值对(若干的Entry实例)存入一个Set集合后返回
+Eg: Set<Entry<String,Integer>> entrySet = map.entrySet();
+		for(Entry<String,Integer> e:entrySet){
+			String key = e.getKey();
+			Integer value = e.getValue();
+			System.out.println(key+":"+value);
+		}
+(3).遍历所有的value
+Collection<V> values()该方法会返回当前Map中所有的value
+Eg：Collection<Integer> values =	map.values();
+		for(Integer value : values){
+			System.out.println("value:"+value);
+		}
+3.有序的Map
+LinkedHashMap实现有序Map
+LinkedHashMap使用Map接口的哈希表和链表实现，具有预知迭代顺序，与HashMap不同在于。LinkedHashMap维护着一个双向循环链表，此链表定义了迭代顺序，该迭代顺序通常就是存放元素的顺序。
+4.面试题
+(1).Map如何遍历？
+(2).Hashcode和equals的区别？
+(3).Collection、List、LinkedList、ArrayList、Vector、Stack、Set、Map、Hashtable、HashMap、TreeMap、WeakHashMap？
+File
+File的每一个实例是用来表示文件系统中的一个文件或目录
+使用File可以: 1:访问文件或目录的属性信息
+		2:操作文件或目录(创建，删除)
+		3:访问一个目录的子项。但是不能访问文件数据
+File file = new File("."+File.separator+"demo.txt");
+File的构造方法中给定路径的字符串来创建一个File实例，目录的层级分隔符用File.separator表示，以避免不同系统带来的差异。
+1.	常用的方法
+(1).boolean  isFile()    当前File对象表示是一个文件时返回true
+	boolean  isDirectory()    当File对象表示的是一个目录时返回true
+(2). String getName()    获取file的名字：String name = file.getName();
+(3). long length()         获取file的文件大小：long length = file.length();
+(4). boolean canRead()   是否可读
+	boolean canWrite()   是否可写
+(5). long lastModified()    返回file最后的修改时间：long time = file.lastModified();
+(6). boolean isHidden()    file是否隐藏      boolean isHidden = file.isHidden();
+(7). boolean exists()  判断当前File表示的文件或目录是否已经真实存在
+	Eg:boolean exists = file.exists();
+(8). boolean createNewFile()   若当前文件所对应的路径不存在时，调用此方法创建文件。创建成功返回true。否则返回false。
+(9). boolean delete()     删除当前文件或目录（若删除目录，必须保证该目录是一个空目录(不含有任何子项)）
+	Eg：file.delete();
+(10). boolean mkdir()   创建目录，创建成功返回true
+(11). boolean mkdirs()   创建多级目录，创建成功返回true（在创建File表示的目录同时将所有不存在的父目录自动创建出来）
+(12). File[]  listFiles()    获取一个目录中的所有子项,返回一个File数组
+(13). File提供了一个重载的listFiles方法，允许传入一个文件过滤器java.io.FileFilter,然后将满足该过滤器要求的子项返回。
+	Eg: 获得当前目录下的所有文本文件
+	过滤器中的accept方法的作用是定义过滤规则。若给定的File对象满足要求则返回true。listFiles方法将来就会将所有满足要求的子项返回。
+FileFilter filter = new FileFilter(){	
+			public boolean accept(File f) {
+				String fileName = f.getName();
+				System.out.println("正在过滤:"+fileName);
+				return fileName.endsWith(".txt");
+			}			
+		};
+		File[] subs = dir.listFiles(filter);
+		for(File sub : subs){
+			System.out.println(sub.getName());
+		}
+RandomAccessFile（java.io.RandomAccessFile）
+用于读写文件数据，读写操作是基于指针进行的，即RAF总是在指针位置读写字节，并且指针会自动向后移动。RAF有两种常用的创建模式:
+"r":只读模式，仅对文件进行读取操作
+"rw":读写模式，对文件又读又写
+RandomAccessFile有两个常用的构造方法：
+RandomAccessFile(String path(路径),String mode)
+RandomAccessFile(File file,String mode)
+RandomAccessFile raf= new RandomAccessFile("raf.dat","rw") ;
+1.	常用的方法
+(1). void write(int d)   将给定的int值对应的2进制的"低八位"写入文件.写出1个字节
+Eg: raf.write(1);(注意操作完成后要raf.c lose();)
+void write(byte[] data)                     将给定的字节数组中的所有字节一次性 写出
+void write(byte[] data,int i,int len)     将给定的字节数组中从下标为i处的字节开始的连续len个字节写出
+ (2). int read()    读取一个字节，并以10进制形式的int值返回。若返回值为-1,则表示读取到了文件的末尾。(参数中可以传入一个  byte[]，增加读取效率)
+Eg: int d = raf.read();
+int read(byte[] data)    一次性读取给定字节数组长度的字节量，并将读取到的字节存入到该数组中。返回值为实际读取到的字节量，若本次没有读取到任 何字节(文件末尾)则返回值为-1
+(3).long getFilePointer()   获取当前指针RandomAccessFile的位置
+Eg：long pos = raf.getFilePointer();
+(4).void  seek(long  pos)		将指针移动到指定位置（参数传入指针位置）
+Eg：raf.seek(0);  //移动到文件最开始
+2.	复制文件案例
+(1).单个字节读取
+public static void main(String[] args) throws IOException {
+		RandomAccessFile src = new RandomAccessFile("mv.mp4", "r");
+		RandomAccessFile desc = new RandomAccessFile("mv_cp.mp4", "rw");
+		int d = -1;
+		long start = System.currentTimeMillis();
+		while ((d = src.read()) != -1) {
+			desc.write(d);
+		}
+		long end = System.currentTimeMillis();
+		System.out.println("复制完毕!耗时:" + (end - start) + "ms");
+		src.close();
+		desc.close();
+	}
+(2).多个字节读取
+	public static void main(String[] args) throws IOException {
+		RandomAccessFile src = new RandomAccessFile("mv.mp4", "r");
+		RandomAccessFile desc = new RandomAccessFile("mv_cp2.mp4", "rw");
+		byte[] buf = new byte[1024 * 10];// 10k
+		int len = -1;
+		long start = System.currentTimeMillis();
+		while ((len = src.read(buf)) != -1) {
+			desc.write(buf, 0, len);
+		}
+		long end = System.currentTimeMillis();
+		System.out.println("复制完毕!耗时:" + (end - start) + "ms");
+		src.close();
+		desc.close();
+	}
+3.	读写字符串
+(1)	.byte getBytes()
+byte getBytes(String csn)
+字符串提供了将内容转换为一组字节的方法。无参的是按照系统默认字符集，有参数的则是按照给定名字的字符集转换。
+Eg: byte[] data = str.getBytes("UTF-8");
+(2). String提供了构造方法可以将给定的字节数组按照指定的字符集转换为字符串内容
+	Eg: String s = new String(array,0,len,"UTF-8");
+
+ObjectOutputStream（java.io.ObjectOutputStream）
+对象输出流，作用是进行对象序列化（对象流是高级流。）
+对象序列化:将一个java中的对象转换为一组字节的过程
+ (1). 将Person对象写入文件
+		FileOutputStream fos = new FileOutputStream("person.obj");
+ObjectOutputStream oos = new ObjectOutputStream(fos); oos.writeObject(person);		oos.close();
+void  writeObject(Object obj)    将给定的对象(参数)转换为一组字节后写出
+（若想将一个对象序列化，要求该对象所属的类必须实现可序列化接口，否则会抛出异常。）
+Eg：oos.writeObject(person);
+ObjectInputStream（java.io.ObjectInputStream）
+对象输入流，用于进行:对象返序列化
+(1). 将person.obj文件中的对象读取出来
+FileInputStream fis = new FileInputStream("person.obj");		
+		ObjectInputStream ois = new ObjectInputStream(fis);
+	Person person = (Person)ois.readObject();
+final  Object  readObject()    通过ois对象调用此方法读取对象
+Eg：Person person = (Person)ois.readObject();
+OutputStreamWriter（java.io.OutputStreamWriter）
+该流也叫做转换流，是字符输出流的一个常用实现类。
+（Writer，Reader 这俩个流是所有字符流的父类。字符流:以字符为单位读写数据。）
+(1).讲字符串写入osw.txt文件中
+FileOutputStream fos= new FileOutputStream("osw.txt");		
+	OutputStreamWriter osw= new OutputStreamWriter(fos,"UTF-8");（参数中指定字符集）
+osw.write("我爱北京天安门");
+ 	osw.close();
+InputStreamReader（java.io.InputStreamReader）
+转换流
+(1).读取 osw.txt中的字符串
+FileInputStream fis = new FileInputStream("osw.txt");
+	InputStreamReader isr = new InputStreamReader(fis,"UTF-8");（参数中指定字符集）
+	int d = -1;
+	while((d = isr.read())!=-1){
+		System.out.print((char)d);
+	}
+isr.close();
+PrintWriter（java.io.PrintWriter）
+常用的缓冲字符输出流。特点是:可以按行写出字符串，并且具有自动行刷新
+PrintWriter内部嵌套java.io.BufferedWriter，所以缓冲功能是靠内部的BW实现的。
+当使用PrintWriter处理其他流的时候，可以指定自动行刷新，即:每当使用println方法写出内容后，会自动flush
+当创建PrintWriter时第一个参数为流，那么就支持传入第二个参数，该参数为boolean值，表示是否自动行刷新。当该值为true则具备自动行刷新。也支持传入一个参数为(String  Path)或者(File  file)
+(1).FileOutputStream fos = new FileOutputStream("pw1.txt");
+	OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
+	PrintWriter pw = new PrintWriter(osw,true);
+ 	pw.println("随便吧");
+pw.close();
+(2). PrintWriter pw = new PrintWriter("pw.txt","utf-8");
+		pw.println("锄禾日当午");
+	pw.close();
+BufferedReader(java.io.BufferedReader)
+缓冲字符输入流，特点:使用它可以按行读取字符串
+FileInputStream fis= new FileInputStream("src"+File.separator+"day08"+File.separator+"BufferedReader_ReadLine.java");
+InputStreamReader isr = new InputStreamReader(fis);
+BufferedReader br = new BufferedReader(isr);
+String line = null;
+while( (line = br.readLine()) != null  ){
+		System.out.println(line);
+}
+br.close();
+String  readLine()    按行读取字符串连续读取若干字符，直到遇见换行符为止，然后将换行符之前的内容以一个字符串返回但是返回的字符串中不含有最后的换行符当返回值为NULL时，表示读取到末尾了

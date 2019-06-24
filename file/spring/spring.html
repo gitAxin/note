@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spring-day06</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // 生成目录列表
+    var div1 = document.createElement("div");
+    div1.style.cssText = "clear:both";
+    var outline = document.createElement("div");
+    outline.setAttribute("id", "outline-list");
+    outline.style.cssText = "border:solid 1px #ccc; background:#eee; min-width:200px;padding:4px 10px;";
+
+    var ele_p = document.createElement("p");
+    ele_p.style.cssText = "text-align: left; margin: 0;";
+    outline.appendChild(ele_p);
+
+    var ele_span = document.createElement("span");
+    // ele_span.style.cssText = "float: left;";
+    var ele_text=document.createTextNode("目录");
+    ele_span.appendChild(ele_text);
+
+    var ele_a = document.createElement("a");
+    ele_a.appendChild(document.createTextNode("[+]"));
+    ele_a.setAttribute("href", "#");
+    ele_a.setAttribute("onclick", "javascript:return openct(this);");
+    ele_a.setAttribute("title", "点击打开目录");
+
+    ele_span.appendChild(ele_a);
+    ele_p.appendChild(ele_span);
+
+    var ele_ol = document.createElement("ol");
+    ele_ol.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    ele_ol.setAttribute("id", "outline_ol");
+    outline.appendChild(ele_ol);
+    var div1 = document.createElement("div");
+    div1.style.cssText = "clear:both";
+
+    document.body.insertBefore(outline, document.body.childNodes[0]);
+    // 获取所有标题
+    var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    if (headers.length < 2)
+      return;
+
+    // -----
+    var old_h = 0, ol_cnt = 0;
+    // -----
+
+    for (var i = 0; i < headers.length; i++) {
+
+      var ele_ols = null;
+      var ele_Current = ele_ol;
+      // 找出它是H几，为后面前置空格准备
+      var header = headers[i];
+      header.setAttribute("id", "t" + i + header.tagName);
+      var h = parseInt(header.tagName.substr(1), 10);
+
+      // -----
+      if (!old_h){
+        old_h = h;
+
+      }
+
+      if (h > old_h) {
+
+        ele_ols = document.createElement("ol");
+        ele_Current = ele_ol;
+        if(ele_Current && ol_cnt > 0){
+          var temp = ol_cnt;
+          while(temp > 0){
+            ele_Current = ele_Current.lastChild;
+            temp--;
+          }
+        }
+        ele_Current.lastChild.appendChild(ele_ols);
+        ol_cnt++;
+      } else if (h < old_h && ol_cnt > 0) {
+
+        if (h == 1) {
+          while (ol_cnt > 0) {
+            ol_cnt--;
+          }
+        } else {
+          ele_ols = document.createElement("ol");
+          ele_Current = ele_ol;
+          if(ele_Current && ol_cnt > 0){
+            var temp = ol_cnt;
+            while(temp > 1){
+              ele_Current = ele_Current.lastChild;
+              temp--;
+            }
+          }
+        // var ele_Parent = ele_Current.parentNode();
+        //ele_Current.appendChild(ele_ols);
+        ol_cnt--;
+
+        }
+      } else if (h == old_h && ol_cnt > 0) {
+
+        ele_Current = ele_ol;
+        if(ele_Current && ol_cnt > 0){
+          var temp = ol_cnt;
+          while(temp > 0){
+            ele_Current = ele_Current.lastChild;
+            temp--;
+          }
+        }
+        ele_Current = ele_Current.lastChild;
+      }
+      if (h == 1) {
+        while (ol_cnt > 0) {
+          ol_cnt--;
+        }
+      }
+      if (h < old_h && ol_cnt > 0 && h != 1){
+        ele_li = document.createElement("li")
+        ele_Current.lastChild.appendChild(ele_li);
+        old_h = h;
+        var a = document.createElement("a");
+        // 为目录项设置链接
+        a.setAttribute("href", "#t" + i + header.tagName);
+        // 目录项文本前面放置对应的空格
+        a.innerHTML = header.textContent;
+        ele_li.appendChild(a);
+        continue;
+      }
+
+      old_h = h;
+      // -----
+      if (ele_ols){
+        ele_li = document.createElement("li")
+        ele_ols.appendChild(ele_li); 
+      } else {
+        ele_li = document.createElement("li")
+        ele_Current.appendChild(ele_li);
+      }
+      var a = document.createElement("a");
+      // 为目录项设置链接
+      a.setAttribute("href", "#t" + i + header.tagName);
+      // 目录项文本前面放置对应的空格
+      a.innerHTML = header.textContent;
+      ele_li.appendChild(a);
+    }
+    // -----
+    while (ol_cnt > 0) {
+      ol_cnt--;
+    }
+    // -----
+    });
+function openct(e) {
+  if (e.innerHTML == '[+]') {
+    // createTextNode
+    e.setAttribute('title', '收起');
+    e.innerHTML = '[-]';
+    var element = document.getElementById("outline_ol");
+    element.style.cssText = "margin-left:14px;padding-left:14px;line-height:160%;";
+  } else {
+    e.setAttribute('title', '展开');
+    e.innerHTML = '[+]';
+    var element = document.getElementById("outline_ol");
+    element.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+  }
+  e.blur();
+  return false;
+}
+</script>
+</head>
+<body>
+<h1>Spring-day01</h1>
+<h2>1. Spring</h2>
+<h3>(1)Spring是什么?</h3>
+<pre><code>开源的，用来简化企业级应用开发的应用开发框架。
+注：
+    简化开发: spring对常用的一些api（比如jdbc）做了封装，
+    这样，代码会大大简化，而且代码质量也会提高（比如，使用
+    spring jdbc访问数据库，就不用考虑获取连接与关闭连接）。
+    解耦: spring可以帮我们管理对象（帮我们创建对象并且管理
+    对象之间依赖关系)。这样一来，软件更容易维护。
+    集成: spring可以集成其它的一些框架（比如，集成任务调度的
+        框架Quartz等等）。
+</code></pre>
+
+<h3>(2)Spring容器</h3>
+<h4>1)Spring容器是什么?</h4>
+<pre><code>是Spring框架中的一个核心模块，用来管理对象。
+注：
+    管理对象：指的是创建对象、初始化、销毁以及管理对象之间
+            的依赖关系。
+</code></pre>
+
+<h4>2)如何启动Spring容器?</h4>
+<pre><code>step1. 导包。
+        spring-webmvc   
+step2. 添加Spring配置文件。
+</code></pre>
+
+<p><img src="day01-a1.png" /></p>
+<pre><code>step3. 启动容器。
+</code></pre>
+
+<p><img src="day01-a2.png" /></p>
+<h4>3)创建对象</h4>
+<pre><code>方式一  无参构造器
+    step1. 为类添加无参构造器（或者缺省构造器）。  
+    step2. 在配置文件当中，添加bean元素。
+</code></pre>
+
+<p><img src="day01-b1.png" /></p>
+<pre><code>    step3. 启动容器，调用容器提供的getBean方法。
+</code></pre>
+
+<p><img src="day01-b2.png" /></p>
+<pre><code>方式二  静态工厂方法 (了解)
+方式三  实例工厂方法（了解）
+</code></pre>
+
+<p>附:
+	&lt;bean </p>
+<pre><code>id = &quot;apple&quot;   id属性:bean的名称,要求唯一 .
+
+class = &quot;first.Apple&quot;  class属性: 要写类的完整的名称.(包名.类名)
+
+factory-bean=&quot;cal&quot;   factory-bean属性:指定一个bean的id. 容器会调用该bean的实例方法来创建对象. 
+
+factory-method=&quot;getInstance&quot;  factory-method属性:指定一个实例方法或静态方法.(实例工厂方法/静态工厂方法)
+
+init-method= &quot;init&quot; ;  初始化方法
+
+destroy-method=&quot;destroy&quot; 销毁方法
+
+scope=&quot;prototype&quot;  scope属性:指定作用域.  缺省值是singleton(单例),如果值是prototype,则会创建多个实例
+
+lazy-init = &quot;true&quot;  lazy-init属性:如果值为true,表示延迟加载.
+
+/&gt;
+
+
+set方法注入 .
+&lt;property   property 元素 :表示set方法注入
+
+name = &quot;b&quot;  name属性:指定调用哪一个方法,容器会将属性名的第一个字母大写,然后在前面添加set,这儿,会调用&quot;setB&quot;方法
+ref = &quot;b1&quot;  ref属性:指定被注入的bean的id.
+/&gt;
+
+构造器方法注入:
+&lt;constructor-arg   constructor-arg元素 :表示采用构造器注入.
+
+index = &quot;0&quot;     index属性:构造器参数的下标(从0开始).
+ref = &quot;foo&quot; 
+/&gt;
+</code></pre>
+
+<h4>4)生命周期</h4>
+<p><img src="day01-s1.png" /></p>
+<h4>5)作用域</h4>
+<pre><code>a.默认情况下，对于一个bean元素，容器只会创建一个实例。
+b.如果将作用域设置为&quot;prototype&quot;，则每调用一次getBean方法，
+都会创建一个新的实例。
+注：
+    如果将作用域设置为&quot;prototype&quot;，则销毁方法不起作用。
+</code></pre>
+
+<p><img src="day01-s2.png" /></p>
+<h4>6)延迟加载(了解)</h4>
+<pre><code>a.默认情况下，容器启动之后，会将所用作用域为&quot;singleton&quot;的bean
+先实例化。
+b.容器启动之后，对于作用域为&quot;singleton&quot;的bean不再实例化，
+直到调用了getBean方法才会创建。
+</code></pre>
+
+<p><img src="day01-s3.png" /></p>
+<h3>(3)IOC和DI</h3>
+<h4>1)什么是IOC? (Inversion Of Controll 控制反转)</h4>
+<pre><code>对象之间的依赖关系由容器来建立。        
+</code></pre>
+
+<h4>2)什么是DI? (Dependency Injection 依赖注入)</h4>
+<pre><code>容器调用set方法或者构造器来建立对象之间的依赖关系。
+注：
+    IOC是目标，DI是手段。
+</code></pre>
+
+<p><img src="day01-set2.png" /></p>
+<h4>3）set方法注入</h4>
+<pre><code>step1.添加相应的set方法。
+step2.在配置文件当中，使用&lt;property&gt;元素进行配置。
+</code></pre>
+
+<p><img src="day01-set.png" /></p>
+<h4>4) 构造器注入</h4>
+<pre><code>step1. 添加相应的构造器。
+step2.在配置文件当中，使用&lt;constructor-arg&gt;元素进行配置。
+</code></pre>
+
+<p><img src="day01-c1.png" />			</p>
+<h1>Spring-day02</h1>
+<h4>5)自动装配 (了解)</h4>
+<pre><code>a.什么是自动装配
+ 容器依据某种规则，自动建立对象之间的依赖关系。
+ 注：
+    容器仍然需要调用set方法或者构造器。
+    容器默认不会自动装配。
+b.如何自动装配
+    可以设置autowire属性值：
+    byName
+    byType
+    constructor
+</code></pre>
+
+<p><img src="day02-autowire.png" /></p>
+<h4>6)注入基本类型的值</h4>
+<p><img src="day02-value.png" /></p>
+<h4>7)注入集合类型的值</h4>
+<pre><code>List Set Map Properties
+方式一 使用list,set,map和props注入。
+方式二 以引用的方式来注入。
+</code></pre>
+
+<p><img src="day02-value2.png" />
+<img src="day02-value3.png" /></p>
+<h4>8)spring表达式</h4>
+<pre><code>a.作用：用于访问其它bean的属性。
+b.用法:
+</code></pre>
+
+<p><img src="day02-value4.png" />	</p>
+<p>练习：
+	配置一个连接池并测试。</p>
+<p>提示：
+	step1. 导包  ojdbc,dbcp</p>
+<pre><code>step2. 添加config.properties文件    添加到resource文件夹。
+</code></pre>
+
+<p><img src="day02-ds1.png" /></p>
+<pre><code>step3. 在spring配置文件中，添加相关配置
+</code></pre>
+
+<p><img src="day02-ds2.png" /></p>
+<pre><code>step4.测试连接池
+</code></pre>
+
+<p><img src="day02-ds3.png" />	</p>
+<h2>2. 使用注解来解化配置文件</h2>
+<h3>(1)什么是组件扫描？</h3>
+<pre><code>    容器启动之后，会扫描指定的包及其子包下面的所有的类，
+如果该类前面有一些特定的注解（比如@Component）,则容器会
+将该类纳入容器进行管理（相当于在配置文件里面有一个bean）。
+    注意：该bean默认的id是首字母小写之后的类名。
+</code></pre>
+
+<h3>(2)编程步骤</h3>
+<pre><code>step1. 在类前面添加一些特定的注解，比如 @Component。
+</code></pre>
+
+<p><img src="day02-z1.png" />
+<img src="day02-z3.png" />
+<img src="day02-z4.png" /></p>
+<pre><code>step2. 在配置文件当中，配置组件扫描。  
+</code></pre>
+
+<p><img src="day02-z2.png" /></p>
+<h3>(3)依赖注入相关的几个注解</h3>
+<p><img src="day02-b1.png" /></p>
+<h1>Spring-day03</h1>
+<h3>(3)依赖注入相关的几个注解</h3>
+<p><img src="day03-b1.png" />
+<img src="day03-b2.png" />
+<img src="day03-b3.png" />
+<img src="day03-b4.png" /></p>
+<h3>(4)Value注解</h3>
+<p><img src="day03-b5.png" /></p>
+<h2>1. MVC (Model View Controller 模型 视图 控制器)</h2>
+<h3>(1)什么是MVC?</h3>
+<pre><code>是一种软件架构模式，核心思想是将一个软件划分成
+模型、视图和控制器三种不同类型的模块，其中，模型负责
+封装业务逻辑的处理，视图负责提供界面（包括数据展现和
+用户操作界面），控制器负责协调模型和视图（视图将请求先
+发送给控制器，由控制器选择对应的模型来处理；模型将处理
+结果交给控制器，由控制器选择对应的视图来展现数据）。
+</code></pre>
+
+<h3>(2)如何使用MVC?</h3>
+<p><img src="day03-mvc.png" /></p>
+<h3>(3)MVC的优点</h3>
+<pre><code>1)方便测试
+    比如，直接将业务逻辑写在servlet里面，需要部署才能测试，
+    而写在java类里面，可以直接测试（不用部署）。
+2)方便维护
+    修改视图不影响模型，反过来，修改模型也不影响视图。
+3)方便分工协作 
+</code></pre>
+
+<h2>2. SpringMVC</h2>
+<h3>(1)SpringMVC是什么?</h3>
+<pre><code>用来简化基于MVC架构的web应用程序开发的框架。
+注：SpringMVC是Spring框架的一部分。
+</code></pre>
+
+<h3>(2)五大组件</h3>
+<pre><code>1)DispatcherServlet  前端控制器
+2)HandlerMapping  映射处理器
+3)Controller  处理器
+4)ModelAndView  用于封装处理结果
+5)ViewResolver 视图解析器
+</code></pre>
+
+<p><img src="day03-springmvc.png" /></p>
+<h3>(5)编程步骤</h3>
+<pre><code>step1.导包
+    spring-webmvc
+step2.添加spring配置文件
+step3.配置DispatcherServlet
+</code></pre>
+
+<p><img src="day03-s1.png" /></p>
+<pre><code>step4.Controller类
+</code></pre>
+
+<p><img src="day03-s2.png" /></p>
+<pre><code>step5.jsp
+step6.配置HandlerMapping和ViewResolver
+</code></pre>
+
+<p><img src="day03-s3.png" />
+<img src="day03-s4.png" /></p>
+<h3>(6)helloworld案例的运行过程分析</h3>
+<p><img src="day03-hello.png" /></p>
+<p>练习：
+	http://ip:port/spring-day03-3/toBmi.do
+	返回计算bmi指数页面。</p>
+<p>练习：
+	修改员工管理模块，将所有jsp文件转移到/WEB-INF/下。</p>
+<h1>Spring-day04</h1>
+<h2>1. 基于注解的springmvc应用</h2>
+<pre><code>step1.导包。
+    spring-webmvc
+step2.添加配置文件
+step3.配置DispatcherServlet
+step4.Controller类
+</code></pre>
+
+<p><img src="day04-c1.png" />
+<img src="day04-c2.png" /></p>
+<pre><code>step5.jsp
+step6.配置文件当中，添加
+        组件扫描，mvc注解扫描，视图解析器。
+</code></pre>
+
+<p><img src="day04-c3.png" /></p>
+<h2>2. 读取请求参数值</h2>
+<h3>(1)通过request对象</h3>
+<p><img src="day04-r1.png" />	</p>
+<h3>(2)通过@RequestParam注解</h3>
+<p><img src="day04-r2.png" />	</p>
+<h3>(3)通过javabean</h3>
+<p><img src="day04-r3.png" />	
+<img src="day04-r4.png" />		</p>
+<h2>3.向页面传值</h2>
+<h3>(1)绑订数据到request对象</h3>
+<p><img src="day04-q1.png" />	</p>
+<h3>(2)返回ModelAndView对象</h3>
+<p><img src="day04-b1.png" /></p>
+<h3>(3)将数据添加到ModelMap对象</h3>
+<p><img src="day04-b2.png" /></p>
+<h3>(4)将数据绑订到session对象</h3>
+<p><img src="day04-b3.png" /></p>
+<h2>3.重定向</h2>
+<h3>　(1)如果方法的返回值是String</h3>
+<pre><code>return &quot;redirect:toIndex.do&quot;
+</code></pre>
+
+<h3>(2)如果方法的返回值是ModelAndView</h3>
+<pre><code>RedirectView rv = 
+    new RedirectView(&quot;toIndex.do&quot;);
+ModelAndView mav = 
+    new ModelAndView(rv);
+</code></pre>
+
+<h2>4. 系统分层（扩展）</h2>
+<h3>(1)如何分层?</h3>
+<pre><code>表示层 (UI层): 数据展现和操作界面，另外还要负责请求分发。 
+业务层（服务层）: 封装业务处理逻辑
+持久层（数据访问层）:　封装数据访问逻辑
+注意:
+    a.上一层调用接口调用下一层的服务（比如，业务层要调用接口
+调用持久层）  ，这样做的好处是，当下一层的实现发生改变，不影响
+上一层。
+    b.表示层调用业务层，业务层调用持久层。
+</code></pre>
+
+<p><img src="day04-layer.png" /></p>
+<h1>Spring-day05</h1>
+<h2>登录案例(按照系统分层思想来写)</h2>
+<p><img src="day05-login.png" /></p>
+<h2>1.处理表单中文参数值乱码问题</h2>
+<pre><code>解决方式：
+配置SpringMVC提供的过滤器(CharacterEncodingFilter)。
+注意:
+    a.表单提交方式必须设置为&quot;POST&quot;。
+    b.过滤器所使用的编码与客户端的要一致。
+</code></pre>
+
+<p><img src="day05-f1.png" /></p>
+<h2>2.拦截器</h2>
+<h3>(1)什么是拦截器?</h3>
+<pre><code>DispatcherServlet在收到请求之后，如果有拦截器，会先调用
+拦截器，再调用处理器(Controller)。
+注：
+    过滤器属于Servlet规范，而拦截器属于Spring框架。
+</code></pre>
+
+<p><img src="day05-f2.png" /></p>
+<h3>(2)如何写拦截器?</h3>
+<pre><code>step1. 写一个java类，实现HandlerInterceptor接口。
+step2. 在拦截器接口方法当中，实现拦截处理逻辑。
+</code></pre>
+
+<p><img src="day05-inter.png" /></p>
+<pre><code>step3. 配置拦截器。　
+</code></pre>
+
+<p><img src="day05-f3.png" /></p>
+<h1>Spring-day06</h1>
+<h2>1. 异常处理</h2>
+<h3>(1)方式一　配置简单异常处理器</h3>
+<pre><code>step1. 在配置文件当中，配置SimpleMappingExceptionResolver
+</code></pre>
+
+<p><img src="day06-e1.png" /></p>
+<pre><code>step2. 添加相应的异常处理页面。
+注：
+    简单异常处理器只适合对异常进行一些简单的处理，如果要对
+    异常做比较复杂的处理（比如记录日志），则需要使用方式二。
+</code></pre>
+
+<h3>(2)方式二　@ExceptionHandler</h3>
+<pre><code>step1.　在处理器类里面，添加一个异常处理方法。
+</code></pre>
+
+<p><img src="day06-e2.png" /></p>
+<pre><code>step2. 添加相应的异常处理页面。
+</code></pre>
+
+<h2>2. SpringJdbc</h2>
+<h3>(1)SpringJdbc是什么?</h3>
+<pre><code>Spring对jdbc的简单封装。
+</code></pre>
+
+<h3>(2)编程步骤</h3>
+<pre><code>step1. 导包
+    spring-webmvc,spring-jdbc,ojdbc,dbcp,junit
+</code></pre>
+
+<p><img src="day06-a1.png" /></p>
+<pre><code>step2. 添加spring配置文件
+step3. 配置JdbcTemplate　
+</code></pre>
+
+<p><img src="day06-a2.png" />　
+	step4. 调用JdbcTemplate提供的方法来访问数据库
+		注：
+			通常将JdbcTemplate注入到DAO。</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>首页--hao456.top</title>
+		<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-theme.min.css" />
+	</head>
+	<body style="background-color:#E0E0E0">
+		<div class="container-fluid">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
+            		 	<span class="sr-only">Toggle navigation</span>
+            		 	<span class="icon-bar"></span>
+            	     	<span class="icon-bar"></span>
+            		 	<span class="icon-bar"></span>
+        			</button>
+        			<a class="navbar-brand" href="#">hao456</a>
+				</div>
+				<div id="navbar-menu" class="navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">文档</a></li>
+						<li ><a href="#">关于</a></li>
+						<li ><a href="#">网站</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div id="content" class="row-fluid" style="margin-top:50px;">
+        		<div class="col-md-2">
+            		<h3>文档列表</h3> 
+            		<ul class="nav nav-tabs nav-stacked">
+        				<li><a href="#" class="link" data="api">API</a></li>
+        				<li><a href="#" class="link" data="jdbc">JDBC</a></li>
+        				<li><a href="#" class="link" data="servlet">Servlet</a></li>
+        				<li><a href="#" class="link" data="spring">Spring</a></li>
+        				<li><a href="#" class="link" data="mybatis">myBatis</a></li>
+        				<li><a href="#" class="link" data="ajax">Ajax</a></li>
+        				<li><a href="#" class="link" data="oracle">Oracle</a></li>
+        				<li><a href="#" class="link" data="web">Web</a></li>
+        				<li><a href="#" class="link" data="linux">Linux</a></li>
+    				</ul> 
+        		</div>
+        		<div class="col-md-10">
+            		<iframe id="iframe" src="file/api/api.html" width="100%" height="600px" scrolling="auto" frameborder="0"></iframe> 
+        		</div>
+    		</div>
+   		 </div>
+	</body>
+	<script type="text/javascript" src="plugins/jquery/jquery-1.11.1.js" ></script>
+	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.js" ></script>
+	<script>
+		$(function(){
+			$("#content").on("click",".link",switchContent);
+		})
+		
+		
+		function switchContent(){
+			var name = $(this).attr("data");
+			$("#iframe").attr("src","file/"+name+"/"+name+".html");
+		}
+	</script>
+</html>

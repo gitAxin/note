@@ -1,0 +1,95 @@
+线程：用于并发执行多个任务。感官上像是"同时"执行
+创建线程方式一：
+继承线程并重写run方法来定义线程要执行的任务代码
+class MyThread1 extends Thread{
+	public void run(){
+		for(int i=0;i<1000;i++){
+			System.out.println("你是谁啊?");
+		}
+	}
+}
+在main中创建线程对象（Thread t1 = new MyThread1();）
+		t1.start();
+启动线程要调用start方法，不要直接调用run方法。当线程启动后，被分配时间片开始运行时会自动调用run方法。
+本方式两点不足：1:由于java是单继承，所以导致继承了Thread不能在继承其他类，在实际开发中经常会出现继承冲突问题
+2:由于重写线程run方法，将线程要执行的任务定义在了线程中，导致任务与线程有一个耦合关系，不利于线程重用。
+创建线程方式二：
+实现Runnable接口单独定义任务
+class MyRunnable1 implements Runnable{
+	public void run(){
+		for(int i=0;i<1000;i++){
+			System.out.println("你是谁啊？");
+		}
+	}
+}
+在main中   Runnable r1 = new MyRunnable1();
+	   Thread t1 = new Thread(r1);
+	   t1.start();
+此上两种方式都可以用匿名内部类方式创建！
+	//方式一
+	Thread t1 = new Thread(){
+		public void run(){
+			for(int i=0;i<1000;i++){
+				System.out.println("你是谁啊?");
+			}
+		}
+	};
+	//方式二
+	Runnable runn = new Runnable(){
+		public void run(){
+			for(int i=0;i<1000;i++){
+				System.out.println("我是查水表的!");
+			}
+		}
+	};
+	Thread t2 = new Thread(runn);
+	t1.start();
+	t2.start();
+
+线程操作API
+1.currentThread：线程提供了一个静态方法currentThread该方法可以获取运行该方法的线程。java中所有代码都是线程运行的，main方法也不例外。当虚拟机启动后会创建一个线程来执行main方法。
+eg：Thread main = Thread.currentThread();
+2.获取线程相关信息方法:
+(1).long  getId():返回该线程的标识符
+(2).String getName():返回该线程的名称
+(3).int getPriority():返回线程的优先级
+(4).Thread.state  getState():获取线程的状态
+(5).boolean  isAlive():测试线程是否处于活动状态
+(6).boolean  isDaemon():测试线程是否为守护线程
+(7).boolean  isInterrupted():测试线程是否已经中断
+3.设置线程优先级
+线程的优先级有10个等级，分别用数字1-10表示其中1最低，10最高，5为默认值也可以使用线程提供的常量:MIN_PRIORITY,MAX_PRIORITY,NORM_PRIORITY
+final void setPriority(int newPriority)：设置线程优先级，参数中指定（Thread提供的方法）
+4.static void sleep(long ms)  Thread提供了一个静态方法
+该方法可以让运行该方法的线程阻塞指定毫秒，当阻塞超时后线程会回到RUNNABLE状态等待再次并发运行
+5.void join()
+该方法是用来协调线程间同步运行的。
+异步:各干各的
+同步:有先后顺序的执行
+
+show线程执行到join方法时会进入阻塞状态，直到download线程执行完毕，才会解除阻塞。
+download.join();
+6.守护线程(后台线程)
+使用上与普通线程没差别，但是结束时机上有所不同，当一个进程结束时，该进程中的所有守护线程都要强制结束。
+当一个进程中的所有前台线程(普通线程)都结束时，进程结束。
+eg：有两个线程rose、jack。讲jack设置为后台线程：
+	rose.start();
+	jack.setDaemon(true);//设置为后台线程,必须在start之前设置
+	jack.start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
